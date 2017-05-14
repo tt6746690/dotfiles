@@ -14,7 +14,6 @@ export MUGQIC_PIPELINES_HOME=/Users/markwang/github/mugqic_pipelines
 export MUGQIC_INSTALL_HOME=$HOME/github/mugqic_resources
 export CCM=hpf.ccm.sickkids.ca
 export HPFWD=/hpf/projects/brudno/wangpeiq
-export JEKYLL_GITHUB_TOKEN=554e4dbe272e96f0e2cdc8916115475041f777b7
 export DISABLE_AUTO_TITLE=true      #  for persistent tmux window names 
 
 export VISUAL=/usr/local/bin/nvim
@@ -34,25 +33,31 @@ alias stash='cd /Users/markwang/School/c_2016_2017'
 # editor
 alias vim='nvim'
 
-# ssh 
+# ssh host 
 alias sshserver='ssh markwang@$SERVERIP'
 alias cdf='ssh -Y wangpeiq@teach.cs.utoronto.ca'
 alias hpf='ssh wangpeiq@hpf.ccm.sickkids.ca'
+
+# softwares 
 alias mysql='mysql -u public'
 alias python='python2'
+
+# utilities
 alias duck='du -sh * | gsort -hr'
 alias stat='stat -x'
-alias sv='rsync -e ssh -avPW $STASH/CSC258/lab wangpeiq@teach.cs.utoronto.ca:$CDFWD/'
-alias ccms='rsync -e ssh -avPW /Users/markwang/github/mugqic_pipelines wangpeiq@hpf.ccm.sickkids.ca:/home/wangpeiq/'
 alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
-
+alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
 alias t='tmux a -t base || tmux new -s base'        # default base tmux session
 alias open='reattach-to-user-namespace open'        # enable open service in tmux sessions/windows
 
+# syncing
+alias sv='rsync -e ssh -avPW $STASH/CSC258/lab wangpeiq@teach.cs.utoronto.ca:$CDFWD/'
+alias ccms='rsync -e ssh -avPW /Users/markwang/github/mugqic_pipelines wangpeiq@hpf.ccm.sickkids.ca:/home/wangpeiq/'
+
+# kwm
 alias kwml='kwmc config reload && khd -e "reload"'
 alias kwms='brew services restart kwm && brew services restart khd && brew services list'
 
-#github
 
 # brew info modules for more info; need to source to use modules
 source /usr/local/opt/modules/Modules/init/zsh
