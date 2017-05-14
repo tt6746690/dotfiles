@@ -3,8 +3,9 @@
 ## My dotfiles
 
 
-_updates dotfile every Monday morning at 4:01AM_
+_updates dotfile every Monday morning at 4:01AM_ 
     + `crontab ./updatetab`
+
 _syncing remote every Monday morning at 4:05AM_
     + `crontab ./installtab`
 
