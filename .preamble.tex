@@ -1,0 +1,126 @@
+
+\usepackage{marginnote}   % setting margin notes
+\usepackage{caption}      % using captions
+\usepackage{subcaption}   % for using sub floats within figure
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amssymb}    % Math symbols such as \mathbb
+\usepackage{amsthm}
+\usepackage{pgfplots}   % plots
+\usepackage{relsize}    % resizing math symbols.. i.e. \mathlarger{\Sigma}
+\usepackage{bbm}        % to write indicator varialbe 
+\usepackage[noline, linesnumbered, boxruled,titlenumbered, noend]{algorithm2e} % algorithmn
+\SetKwProg{Fn}{Function}{}{}
+
+
+\usepackage{multicol}       % writing multiple columns
+\setlength{\columnsep}{0.1cm}
+
+\usepackage{listings} % code formatting
+\usepackage{color}
+\usepackage{tikz}       % drawing graphics
+\usetikzlibrary{automata,positioning} % for drawing automatas
+
+\usepackage{tikz-qtree} % plotting simple trees
+\usepackage{forest}     % plotting simple trees
+\usepackage{enumitem}   % for alphabest enumerate
+\usepackage{graphicx}   % incorporating graphics
+\graphicspath{{../assets/}}
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{hyperref} % referencing
+\hypersetup{colorlinks=true, linktoc=all, linkcolor=blue}
+
+
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+
+\lstdefinestyle{mystyle}{
+backgroundcolor=\color{backcolour},
+commentstyle=\color{codegreen},
+keywordstyle=\color{magenta},
+numberstyle=\tiny\color{codegray},
+stringstyle=\color{codepurple},
+basicstyle=\footnotesize,
+breakatwhitespace=false,
+breaklines=true,
+captionpos=b,
+keepspaces=true,
+numbers=left,
+numbersep=5pt,
+showspaces=false,
+showstringspaces=false,
+showtabs=false,
+tabsize=2
+}
+\lstset{style=mystyle}
+
+
+
+
+% proper inline math display, adjust height for symbols like \sum
+\everymath{\displaystyle}
+
+% define tags for math use..
+\theoremstyle{plain}% default
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{corollary*}{Corollary}
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem*{proposition*}{Proposition}
+\newtheorem{proposition}{Proposition}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem{lemma}{Lemma}
+
+\newtheorem*{defn*}{Definition}
+\newtheorem{defn}{Definition}[section]
+
+
+
+\theoremstyle{definition}
+\newtheorem*{example}{Example}
+
+\theoremstyle{remark}
+\newtheorem*{rem}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{case}{Case}
+
+% Gives begin{solution} same formating as \begin{proof}
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\newenvironment{approach}
+  {\begin{proof}[Approach]}
+  {\end{proof}}
+
+
+%running fraction with slash - requires math mode.
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+% math
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\I}{\mathbb{I}}
+% statistics
+\newcommand{\pr}{\mathbb{P}}
+\newcommand{\norm}{\mathcal{N}}
+\newcommand{\E}{\mathbb{E}}
+
+% color highlighting
+\newcommand{\hilight}[1]{\colorbox{yellow}{#1}}
+
+
+\newcommand{\icol}[1]{% inline column vector
+  \left(\begin{smallmatrix}#1\end{smallmatrix}\right)%
+}
+
+\newcommand{\irow}[1]{% inline row vector
+  \begin{smallmatrix}(#1)\end{smallmatrix}%
+}
+\DeclareMathOperator*{\argmin}{\arg\,\min}
+\DeclareMathOperator*{\argmax}{\arg\,\max}
