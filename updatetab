@@ -1,0 +1,3 @@
+# ./updatetab
+# min hr day(mth) mth day(wk) cmd
+1 4 * * 0 cd ~/.dotfiles && ./dot update
