@@ -60,7 +60,7 @@ alias kwms='brew services restart kwm && brew services restart khd && brew servi
 
 
 # brew info modules for more info; need to source to use modules
-source /usr/local/opt/modules/Modules/init/zsh
+# source /usr/local/opt/modules/Modules/init/zsh
 
 
 function sync(){
