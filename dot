@@ -27,8 +27,6 @@ ycm_files="
 .ycm_extra_conf.py
 "
 
-# Update: from src to . 
-# Install: from . to src
 dotsync(){
     # @param 1: dirname of filepath after $HOME
     # @param 2...: list of file names
@@ -47,7 +45,6 @@ dotsync(){
             dest="$HOME/$base/$f"
         fi
         if [ -e $src ]; then
-            # echo Copy $src to $dest
             echo Copy over $f
             mkdir -p `dirname $dest` && cp $src $dest
         else
@@ -83,12 +80,13 @@ update(){
 
 install(){
     echo installing ...
+
+    git pull 
     transfer
 }
 
 
 USAGE="Usage: ./dot (update | install)"
-
 
 
 if [ "$#" -ne 1 ]; then 
@@ -102,8 +100,3 @@ elif [ $1 = "install" ]; then
 else
     echo $USAGE
 fi
-
-
-
-
-
