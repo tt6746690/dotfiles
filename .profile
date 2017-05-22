@@ -13,7 +13,7 @@ export NVM_DIR="/Users/markwang/.nvm"   # include npm path
 export SERVERIP=159.203.47.10   # other variables
 export CDF=teach.cs.utoronto.ca
 export CDFHOME=/h/u13/c6/00/wangpeiq/csc258
-export CCM=hpf.ccm.sickkids.ca
+export HPF=hpf.ccm.sickkids.ca
 export HPFWD=/hpf/projects/brudno/wangpeiq
 
 alias sshserver='ssh markwang@$SERVERIP'
@@ -23,6 +23,7 @@ alias hpf='ssh wangpeiq@$HPF'
 
 # editor
 alias vim='nvim'
+alias v='nvim'
 # nvim: accomodating both mac and cdf
 OS_NAME=`uname -s`
 if [ OS_NAME = "Darwin" ]; then 
@@ -52,7 +53,7 @@ alias python='python2'
 alias duck='du -sh * | gsort -hr'
 alias stat='stat -x'
 alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
-alias slg='cat /var/log/system.log | tail'
+alias slg='cat /var/log/system.log | grep enrol | tail'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
 
 

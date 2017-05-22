@@ -21,12 +21,13 @@ Plugin 'scrooloose/nerdcommenter'           " quick commenting
 Plugin 'jiangmiao/auto-pairs'               " bracketing 
 Plugin 'bling/vim-airline'                  " statusline
 Plugin 'vim-scripts/a.vim'                  " .c -> .h
+Plugin 'tmux-plugins/vim-tmux'              " syntax highlight for .tmux.conf
 if has('nvim')
     Plugin 'Valloric/YouCompleteMe'             " auto completion
 endif
 
 call vundle#end()            " required
-filetype plugin indent on    " required
+filetype plugin indent on    " load plugins according to detected filetype
 
 " Brief help
 " :PluginList       - lists configured plugins
@@ -111,30 +112,40 @@ let g:AutoPairsFlyMode=1
 
 " == Personal Tweaks ==
 set number 
-set showcmd
-set tabstop=4                               " show existing tab with 4 spaces width
-set shiftwidth=4                            " when indenting with '>', use 4 spaces width
-set expandtab                               " On pressing tab, insert 4 spaces
 
-" search 
-set hlsearch 
-noremap <Leader>s :set hlsearch!<CR> 
+set autoindent                              " indent according to previous line
+set expandtab                               " use space instead of tabs
+set softtabstop =4                          " tab key indents by 4 spaces
+set shiftwidth  =4                          " >> indents by 4 spaces
+set shiftround                              " >> indents to next multiple of 'shiftwidth'
+
+set backspace   =indent,eol,start           " backspace now indents backward properly
+set hidden                                  " switch between buffer without having to save first
+set laststatus  =2                          " always show statusline
+
+set noshowmode                              " unset show current mode in command-line, since using airline
+set showcmd                                 " show already typed words when more are expected
+
+set incsearch                               " highlight when search wiht / or ?
+set hlsearch                                " keeps match highlighted
+noremap <Leader>s :set hlsearch!<CR>        " resets highlight
 set ignorecase
 set smartcase                               " /LINUX will search for LINUX only whereas /linux search ignore case
-set incsearch
+set wrapscan                                " searches wrap around EOF
 
-" keep cursor centered while scrolling
-set scrolloff=999
+set splitbelow                              " open new window below current window 
+set splitright                              " open new window right of current window 
+
+set scrolloff=999                           " keep cursor centered while scrolling
 noremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> 
-
-" theme 
-syntax enable
+ 
+syntax enable                               " theme
 set background=light
 colorscheme gruvbox
 
 " gruvbox
 let g:gruvbox_termcolors=256            " defaults
-let g:gruvbox_contrast_light="hard"     " soft, medium, hard
+let g:gruvbox_contrast_light="soft"     " soft, medium, hard
 
 " highlight style 
 highlight Normal ctermbg=NONE cterm=NONE
