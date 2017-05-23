@@ -20,7 +20,6 @@ alias sshserver='ssh markwang@$SERVERIP'
 alias cdf='ssh -Y wangpeiq@$CDF'
 alias hpf='ssh wangpeiq@$HPF'
 
-
 # editor
 alias vim='nvim'
 alias v='nvim'
@@ -34,6 +33,18 @@ elif [ OS_NAME = "Linux" ]; then
     export EDITOR="$HOME/neovim/bin/nvim"
 fi
 
+# hpf specific settings
+if [ `command -v module` ]; 
+then 
+
+    export WD="/hpf/projects/brudno/wangpeiq"
+
+    alias wd="cd $WD"
+    alias sj="qstat -u wangpeiq"
+
+    module load tmux
+    module load tree
+fi
 
 # quick cd's
 alias la='ls -a'
