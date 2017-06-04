@@ -21,9 +21,9 @@ alias cdf='ssh -Y wangpeiq@$CDF'
 alias hpf='ssh wangpeiq@$HPF'
 
 # editor
-alias vim='nvim'
-alias v='nvim'
 # nvim: accomodating both mac and cdf
+alias vim="nvim"
+
 OS_NAME=`uname -s`
 if [ OS_NAME = "Darwin" ]; then 
     export VISUAL=/usr/local/bin/nvim
@@ -41,6 +41,9 @@ then
 
     alias wd="cd $WD"
     alias sj="qstat -u wangpeiq"
+
+    export VISUAL="/usr/bin/vim"
+    export EDITOR="/usr/bin/vim"
 
     module load tmux
     module load tree
