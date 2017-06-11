@@ -22,6 +22,9 @@ Plugin 'jiangmiao/auto-pairs'               " bracketing
 Plugin 'bling/vim-airline'                  " statusline
 Plugin 'vim-scripts/a.vim'                  " .c -> .h
 Plugin 'tmux-plugins/vim-tmux'              " syntax highlight for .tmux.conf
+Plugin 'pangloss/vim-javascript'            " js indentation and syntax
+Plugin 'leafgarland/typescript-vim'         " syntax highlight for typescript
+Plugin 'lervag/vimtex'                      " latex in vim
 if has('nvim')
     Plugin 'Valloric/YouCompleteMe'             " auto completion
 endif

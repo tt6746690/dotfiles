@@ -39,8 +39,8 @@
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 
-\lstdefinestyle{mystyle}{
-backgroundcolor=\color{backcolour},
+\lstdefinestyle{mystyle}
+{backgroundcolor=\color{backcolour},
 commentstyle=\color{codegreen},
 keywordstyle=\color{magenta},
 numberstyle=\tiny\color{codegray},
@@ -57,9 +57,6 @@ showstringspaces=false,
 showtabs=false,
 tabsize=2}
 \lstset{style=mystyle}
-
-
-
 
 % proper inline math display, adjust height for symbols like \sum
 \everymath{\displaystyle}
@@ -92,14 +89,12 @@ tabsize=2}
 \newenvironment{solution}
   {\begin{proof}[Solution] \end{proof}}
 
-
 \newenvironment{approach}
-  {\begin{proof}[Approach]}
-  {\end{proof}}
-
+  {\begin{proof}[Approach] \end{proof}}
 
 %running fraction with slash - requires math mode.
 \newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
 % math
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\R}{\mathbb{R}}
@@ -114,11 +109,11 @@ tabsize=2}
 
 
 \newcommand{\icol}[1]{% inline column vector
-  \left(\begin{smallmatrix}#1\end{smallmatrix}\right)%
+  \left(\begin{smallmatrix}#1\end{smallmatrix}\right)
 }
 
 \newcommand{\irow}[1]{% inline row vector
-  \begin{smallmatrix}(#1)\end{smallmatrix}%
+  \begin{smallmatrix} (#1)\end{smallmatrix}
 }
 \DeclareMathOperator*{\argmin}{\arg\,\min}
 \DeclareMathOperator*{\argmax}{\arg\,\max}
