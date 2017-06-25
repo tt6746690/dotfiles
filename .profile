@@ -80,6 +80,7 @@ alias open='reattach-to-user-namespace open'        # enable open service in tmu
 # syncing
 alias sv='rsync -e ssh -avPW $STASH/CSC258/lab wangpeiq@teach.cs.utoronto.ca:$CDFHOME/'
 alias ccms='rsync -e ssh -avPW /Users/markwang/github/mugqic_pipelines wangpeiq@hpf.ccm.sickkids.ca:/home/wangpeiq/'
+alias c_sick='rsync -e ssh -avPW ~/github/sickkids/ markwang@$SERVERIP:/home/markwang/'
 
 # kwm
 alias kwml='kwmc config reload && khd -e "reload"'
