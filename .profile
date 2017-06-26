@@ -15,10 +15,13 @@ export CDF=teach.cs.utoronto.ca
 export CDFHOME=/h/u13/c6/00/wangpeiq/csc258
 export HPF=hpf.ccm.sickkids.ca
 export HPFWD=/hpf/projects/brudno/wangpeiq
+export PAGE=page.ccm.sickkids.ca
+export wd=/home/wangpeiq
 
 alias sshserver='ssh markwang@$SERVERIP'
 alias cdf='ssh -Y wangpeiq@$CDF'
 alias hpf='ssh wangpeiq@$HPF'
+alias page='ssh wangpeiq@$PAGE'
 
 # editor
 # nvim: accomodating both mac and cdf
