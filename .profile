@@ -72,6 +72,9 @@ alias stat='stat -x'
 alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
 alias slg='cat /var/log/system.log | grep enrol | tail'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
+alias mb="cmake -H. -Bbuild -Wno-dev"
+alias mm="cmake --build build -- -j3"
+
 
 
 # tmux

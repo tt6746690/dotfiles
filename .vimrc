@@ -61,8 +61,14 @@ if has("nvim")
 endif
 
 "vim-markdown 
-let g:vim_markdown_math = 1                   " writing inline latex without escape
-let g:vim_markdown_json_frontmatter = 1       " format json
+let g:vim_markdown_folding_disabled = 1             " disable folding
+let g:vim_markdown_math = 1                         " writing inline latex without escape
+let g:vim_markdown_json_frontmatter = 1             " format json
+let g:vim_markdown_new_list_item_indent = 0         " disable indent on next-line o
+let g:vim_markdown_no_extensions_in_markdown = 1    " `ge` on [text](link_url) go to link_url.md instead of link_url
+let g:vim_markdown_autowrite = 1                    " autowrite on `ge`
+
+
 
 " Command T 
 nmap <silent> <Leader>j <Plug>(CommandTJump)
@@ -142,6 +148,30 @@ set splitright                              " open new window right of current w
 
 set scrolloff=999                           " keep cursor centered while scrolling
 noremap <Leader>zz :let &scrolloff=999-&scrolloff<CR> 
+
+:set lazyredraw                             " make scrolling faster
+
+let g:MY_multiscroll = 0                    " toggle between j/k scrolling modes for fast navigation
+function! MultiScroll()
+    if g:MY_multiscroll
+        noremap j 5j
+        noremap k 5k
+        let g:MY_multiscroll = 0
+    else
+        noremap j j
+        noremap k k
+        let g:MY_multiscroll = 1
+    endif
+endfunction 
+
+map <Leader>k :call MultiScroll()<RETURN>
+map <Leader>j :call MultiScroll()<RETURN>
+
+map <c-l> >> <cr>                           " indent short-cut
+map <c-h> << <cr>                                
+
+
+
  
 syntax enable                               " theme
 set background=light

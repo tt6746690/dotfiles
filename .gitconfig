@@ -8,6 +8,7 @@
 	name = Mark
 [core] 
 	editor = nano
+	ignorecase = false
 	; excludesfile = /Users/markwang/.gitignore_global
 
 [alias]

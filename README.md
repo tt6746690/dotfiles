@@ -20,3 +20,17 @@
 ```
 
 
+
+1. install vundle
+    ```sh 
+    git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
+    ```
+    + `PluginInstall`
+
+2. install tpm
+    ```sh 
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    ```
+    + `prefix+I`
+
+
