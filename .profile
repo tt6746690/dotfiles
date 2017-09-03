@@ -1,6 +1,6 @@
 # profile
 # making quartus work on osx
-export PATH=/usr/local/Cellar/ruby/2.4.0/bin:/usr/local/mysql/bin:$HOME/.scripts:$PATH
+export PATH=/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:/usr/local/Cellar/ruby/2.4.0/bin:/usr/local/mysql/bin:$HOME/.scripts:$PATH
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
 export LANG=en_US.UTF-8       # not existent on OSX, required for quartus
 export DISPLAY=:0.0           # allow for X11fowarding using XQuartz
@@ -73,7 +73,7 @@ alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
 alias slg='cat /var/log/system.log | grep enrol | tail'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
 alias mb="cmake -H. -Bbuild -Wno-dev"
-alias mm="cmake --build build -- -j3"
+alias mm="cmake --build build -- -j5"
 
 
 
