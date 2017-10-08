@@ -1,9 +1,13 @@
 # profile
 # making quartus work on osx
-export PATH=/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:/usr/local/Cellar/ruby/2.4.0/bin:/usr/local/mysql/bin:$HOME/.scripts:$PATH
+export PATH=/usr/local/opt/ccache/libexec:/Users/markwang/github/GenomeKit/genome_kit:$HOME/anaconda/bin/:/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:/usr/local/Cellar/ruby/2.4.0/bin:/usr/local/mysql/bin:$HOME/.scripts:$PATH
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
 export LANG=en_US.UTF-8       # not existent on OSX, required for quartus
 export DISPLAY=:0.0           # allow for X11fowarding using XQuartz
+
+# compiler env
+# export CC=/usr/bin/gcc
+# export CXX=/usr/bin/g++
 
 # nvm init
 export NVM_DIR="/Users/markwang/.nvm"   # include npm path
@@ -20,6 +24,7 @@ export wd=/home/wangpeiq
 
 alias sshserver='ssh markwang@$SERVERIP'
 alias cdf='ssh -Y wangpeiq@$CDF'
+alias cdfsql='ssh wangpeiq@dbsrv1.teach.cs.toronto.edu'
 alias hpf='ssh wangpeiq@$HPF'
 alias page='ssh wangpeiq@$PAGE'
 
@@ -59,9 +64,9 @@ alias cdd='cd ..'
 alias cddd='cd ...'
 
 export GITHUB_DIR='/Users/markwang/github'
-export STASH="/Users/markwang/School/c_2016_2017"
+export STASH="/Users/markwang/School/c_2017_2018"
 alias github='cd $GITHUB_DIR'
-alias stash='cd /Users/markwang/School/c_2016_2017'
+alias stash='cd $STASH'
 
 
 # utilities
@@ -74,6 +79,10 @@ alias slg='cat /var/log/system.log | grep enrol | tail'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
 alias mb="cmake -H. -Bbuild -Wno-dev"
 alias mm="cmake --build build -- -j5"
+
+
+# csc494
+export genomekit_storage='/Users/markwang/Library/Application Support/genome_kit/'
 
 
 
@@ -103,4 +112,13 @@ c_sync(){
         mkdir $src/$f
         rsync -av $src/$f $dest
     done
+
+    src="/Users/markwang/School/c_2017_2018"
+    dest="/Users/markwang/github/Courses"
+
+    for f in "CSC324" "CSC343" "STA302" "CSC458"; do 
+        mkdir $src/$f
+        rsync -av $src/$f $dest
+    done
+
 }
