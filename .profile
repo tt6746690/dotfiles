@@ -1,3 +1,7 @@
+export MININETIP=192.168.0.15
+alias async='rsync -e ssh -avPW ~/github/CSC458/cs144_lab5/ mininet@$MININETIP:/home/mininet/cs144_lab5'
+alias bsync='rsync -e ssh -avPW mininet@$MININETIP:/home/mininet/cs144_lab5/ ~/github/CSC458/cs144_lab5'
+
 # profile
 # making quartus work on osx
 export PATH=/usr/local/opt/ccache/libexec:/Users/markwang/github/GenomeKit/genome_kit:$HOME/anaconda/bin/:/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:/usr/local/Cellar/ruby/2.4.0/bin:/usr/local/mysql/bin:$HOME/.scripts:$PATH
@@ -77,8 +81,9 @@ alias stat='stat -x'
 alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
 alias slg='cat /var/log/system.log | grep enrol | tail'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
-alias mb="cmake -H. -Bbuild -Wno-dev"
-alias mm="cmake --build build -- -j5"
+alias mb="cmake -H. -Bcmake-build-debug -Wno-dev"
+alias mm="cmake --build cmake-build-debug -- -j5"
+alias gh="python setup.py develop"
 
 
 # csc494
@@ -96,6 +101,7 @@ alias open='reattach-to-user-namespace open'        # enable open service in tmu
 alias sv='rsync -e ssh -avPW $STASH/CSC258/lab wangpeiq@teach.cs.utoronto.ca:$CDFHOME/'
 alias ccms='rsync -e ssh -avPW /Users/markwang/github/mugqic_pipelines wangpeiq@hpf.ccm.sickkids.ca:/home/wangpeiq/'
 alias c_sick='rsync -e ssh -avPW ~/github/sickkids/ markwang@$SERVERIP:/home/markwang/'
+alias sqlsync='rsync -e ssh -avPW wangpeiq@dbsrv1.teach.cs.toronto.edu:/h/u13/c6/00/wangpeiq/csc343db/a3/ /Users/markwang/School/c_2017_2018/CSC343/assigments/a3/fromcdf'
 
 # kwm
 alias kwml='kwmc config reload && khd -e "reload"'
@@ -107,7 +113,7 @@ alias kwms='brew services restart kwm && brew services restart khd && brew servi
 c_sync(){
     src="/Users/markwang/School/c_2016_2017"
     dest="/Users/markwang/github/Courses"
-    
+
     for f in "STA247" "STA261" "CSC207" "CSC209" "CSC236" "CSC263" "CSC258" "MAT237" "CSC369" "CSC373"; do
         mkdir $src/$f
         rsync -av $src/$f $dest
@@ -122,3 +128,8 @@ c_sync(){
     done
 
 }
+
+
+cat ~/.doge
+
+
