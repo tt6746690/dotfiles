@@ -122,7 +122,7 @@ c_sync(){
     src="/Users/markwang/School/c_2017_2018"
     dest="/Users/markwang/github/Courses"
 
-    for f in "CSC324" "CSC343" "STA302" "CSC458"; do 
+    for f in "CSC324" "CSC343" "STA302" "CSC458" "CSC321" "EAS274" "MAT247" "STA414" "CSC488" "CSC473"; do 
         mkdir $src/$f
         rsync -av $src/$f $dest
     done
