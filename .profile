@@ -130,6 +130,6 @@ c_sync(){
 }
 
 
-cat ~/.doge
+# cat ~/.doge
 
 
