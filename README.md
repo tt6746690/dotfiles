@@ -20,6 +20,12 @@
 ```
 
 
+0. install [zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+    ```sh 
+    brew install zsh zsh-completions 
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    ```
+
 
 1. install vundle
     ```sh 
