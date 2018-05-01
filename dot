@@ -9,6 +9,7 @@ home_files="
 .tmux.conf
 .vimrc
 .zshrc
+.condarc
 "
 
 NVIM_BASE_CONFIG_DIR=".config/nvim"
