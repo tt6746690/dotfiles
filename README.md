@@ -27,16 +27,18 @@
     ```
 
 
-1. install vundle
+1. vundle
     ```sh 
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
     ```
     + `PluginInstall`
 
-2. install tpm
+2. tpm
     ```sh 
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
     + `prefix+I`
 
 
+3. [iterm2](https://www.iterm2.com/)
+    + update key shortcut for macos [here](https://stackoverflow.com/questions/6205157/iterm-2-how-to-set-keyboard-shortcuts-to-jump-to-beginning-end-of-line)
