@@ -45,8 +45,8 @@ export wd=/home/wangpeiq
 export DCS=cs.toronto.edu
 
 # frequent directories
-export GITHUB_DIR='/Users/mark.wang/github'
-export STASH="/Users/markwang/School/c_2017_2018"
+export GITHUB_DIR="$HOME/github"
+export STASH="$HOME/School/c_2017_2018"
 
 # ssh aliases
 alias sshserver='ssh markwang@$SERVERIP'
@@ -132,6 +132,32 @@ c_sync(){
 
 }
 
+# makes a new latex template with specified filename and populate body with stdio, if exists
+make_template() {
+    # determine filename from cml  
+    if [ -z "$1" ] 
+    then 
+        latex_filename="template" 
+    else 
+        latex_filename="$1"
+    fi 
+
+    # create new latex template if not exist 
+    if [ ! -f "$latex_filename.tex" ]
+    then 
+        {
+            echo "\documentclass[11pt]{article}"
+            echo "\input{\string~/.preamble}"
+            echo 
+            echo '\\begin{document}'
+            for i in {1..10}
+            do 
+                echo 
+            done 
+            echo '\\end{document}'
+        } > "$latex_filename.tex"	
+    fi
+}
 
 
 
