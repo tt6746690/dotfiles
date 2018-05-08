@@ -133,7 +133,7 @@ c_sync(){
 }
 
 # makes a new latex template with specified filename and populate body with stdio, if exists
-make_template() {
+latem() {
     # determine filename from cml  
     if [ -z "$1" ] 
     then 
