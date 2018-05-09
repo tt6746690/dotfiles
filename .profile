@@ -2,25 +2,27 @@
 # PATH
 #
 # added by Anaconda3 5.1.0 installer
-export PATH="/Users/mark.wang/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
 export PATH="/anaconda2/bin:$PATH"
 # gcloud 
-export PATH="/Users/mark.wang/google-cloud-sdk/bin:$PATH"
+export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
 export PATH="/Applications/MATLAB_R2018a.app/bin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # genome_kit
-export PATH="/Users/markwang/github/GenomeKit/genome_kit:$PATH"
+export PATH="$HOME/github/GenomeKit/genome_kit:$PATH"
 # samtools
-export PATH="/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
+export PATH="$HOME/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
 # ruby
 export PATH="/usr/local/Cellar/ruby/2.4.0/bin:$PATH"
 # mysql
 export PATH="/usr/local/mysql/bin:$PATH"
 # impromptu scripts
 export PATH="$HOME/.scripts:$PATH"
+# cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 #
 # envs
@@ -158,6 +160,7 @@ latem() {
         } > "$latex_filename.tex"	
     fi
 }
+
 
 
 
