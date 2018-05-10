@@ -28,8 +28,8 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # envs
 #
 # nvm init
-export NVM_DIR="~/.nvm"   # include npm path
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # making quartus work on osx
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
