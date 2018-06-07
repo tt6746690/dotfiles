@@ -45,6 +45,7 @@ export HPFWD=/hpf/projects/brudno/wangpeiq
 export PAGE=page.ccm.sickkids.ca
 export wd=/home/wangpeiq
 export DCS=cs.toronto.edu
+export ALICEDESKTOP=192.168.184.236  # on mars-tenant only
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
@@ -57,6 +58,7 @@ alias cdfsql='ssh wangpeiq@dbsrv1.teach.cs.toronto.edu'
 alias hpf='ssh wangpeiq@$HPF'
 alias page='ssh wangpeiq@$PAGE'
 alias dcs='ssh wpq@$DCS'
+alias alice='ssh mark@$ALICEDESKTOP'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
