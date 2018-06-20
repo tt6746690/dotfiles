@@ -46,6 +46,7 @@ export PAGE=page.ccm.sickkids.ca
 export wd=/home/wangpeiq
 export DCS=cs.toronto.edu
 export ALICEDESKTOP=192.168.184.236  # on mars-tenant only
+export CPU1=cpu1.dg
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
@@ -59,6 +60,7 @@ alias hpf='ssh wangpeiq@$HPF'
 alias page='ssh wangpeiq@$PAGE'
 alias dcs='ssh wpq@$DCS'
 alias alice='ssh mark@$ALICEDESKTOP'
+alias cpu1='ssh mark.wang@$CPU1'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
@@ -71,6 +73,7 @@ alias cdd='cd ..'
 alias cddd='cd ...'
 
 # shortcuts
+alias rsyncc='/usr/local/Cellar/rsync/3.1.3_1/bin/rsync'
 alias mysql='mysql -u public'
 alias python='python2'
 alias duck='du -sh * | gsort -hr'
