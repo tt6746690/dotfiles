@@ -45,7 +45,8 @@ export HPFWD=/hpf/projects/brudno/wangpeiq
 export PAGE=page.ccm.sickkids.ca
 export wd=/home/wangpeiq
 export DCS=cs.toronto.edu
-export ALICEDESKTOP=192.168.184.236  # on mars-tenant only
+export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
+export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
 export CPU1=cpu1.dg
 
 # frequent directories
@@ -60,6 +61,7 @@ alias hpf='ssh wangpeiq@$HPF'
 alias page='ssh wangpeiq@$PAGE'
 alias dcs='ssh wpq@$DCS'
 alias alice='ssh mark@$ALICEDESKTOP'
+alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
 
 # alias for getting around
