@@ -1,6 +1,8 @@
 #
 # PATH
 #
+# haskell installed pkgs 
+export PATH="$HOME/.local/bin:$PATH"
 # added by Anaconda3 5.1.0 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
