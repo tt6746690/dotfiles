@@ -2,32 +2,34 @@
 # PATH
 #
 # added by Anaconda3 5.1.0 installer
-export PATH="/Users/mark.wang/anaconda3/bin:$PATH"
+export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
 export PATH="/anaconda2/bin:$PATH"
 # gcloud 
-export PATH="/Users/mark.wang/google-cloud-sdk/bin:$PATH"
+export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
 export PATH="/Applications/MATLAB_R2018a.app/bin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # genome_kit
-export PATH="/Users/markwang/github/GenomeKit/genome_kit:$PATH"
+export PATH="$HOME/github/GenomeKit/genome_kit:$PATH"
 # samtools
-export PATH="/Users/markwang/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
+export PATH="$HOME/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
 # ruby
 export PATH="/usr/local/Cellar/ruby/2.4.0/bin:$PATH"
 # mysql
 export PATH="/usr/local/mysql/bin:$PATH"
 # impromptu scripts
 export PATH="$HOME/.scripts:$PATH"
+# cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
 #
 # envs
 #
 # nvm init
-export NVM_DIR="~/.nvm"   # include npm path
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh"  ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # making quartus work on osx
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
@@ -43,6 +45,9 @@ export HPFWD=/hpf/projects/brudno/wangpeiq
 export PAGE=page.ccm.sickkids.ca
 export wd=/home/wangpeiq
 export DCS=cs.toronto.edu
+export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
+export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
+export CPU1=cpu1.dg
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
@@ -55,6 +60,9 @@ alias cdfsql='ssh wangpeiq@dbsrv1.teach.cs.toronto.edu'
 alias hpf='ssh wangpeiq@$HPF'
 alias page='ssh wangpeiq@$PAGE'
 alias dcs='ssh wpq@$DCS'
+alias alice='ssh mark@$ALICEDESKTOP'
+alias shresh='ssh mark@$SHRESHTHDESKTOP'
+alias cpu1='ssh mark.wang@$CPU1'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
@@ -67,6 +75,7 @@ alias cdd='cd ..'
 alias cddd='cd ...'
 
 # shortcuts
+alias rsyncc='/usr/local/Cellar/rsync/3.1.3_1/bin/rsync'
 alias mysql='mysql -u public'
 alias python='python2'
 alias duck='du -sh * | gsort -hr'
@@ -133,7 +142,7 @@ c_sync(){
 }
 
 # makes a new latex template with specified filename and populate body with stdio, if exists
-make_template() {
+latem() {
     # determine filename from cml  
     if [ -z "$1" ] 
     then 
@@ -158,6 +167,7 @@ make_template() {
         } > "$latex_filename.tex"	
     fi
 }
+
 
 
 
