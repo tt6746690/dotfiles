@@ -73,6 +73,10 @@ alias wpq='ssh wpq@$COMPS0'
 alias github='cd $GITHUB_DIR'
 alias stash='cd $STASH'
 
+# different versions of julia
+alias julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
+alias julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
+
 # quick cd's
 alias la='ls -a'
 alias ll='ls -la'
