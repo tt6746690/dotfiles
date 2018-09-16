@@ -26,6 +26,7 @@ Plugin 'pangloss/vim-javascript'            " js indentation and syntax
 Plugin 'leafgarland/typescript-vim'         " syntax highlight for typescript
 Plugin 'lervag/vimtex'                      " latex in vim
 Plugin 'jalvesaq/Nvim-R'                    " R
+Plugin 'JuliaEditorSupport/julia-vim'       " Julia
 
 call vundle#end()            " required
 filetype plugin indent on    " load plugins according to detected filetype

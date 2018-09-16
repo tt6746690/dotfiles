@@ -1,6 +1,9 @@
 #
 # PATH
 #
+# haskell installed pkgs 
+export PATH="$HOME/Library/Haskell/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # added by Anaconda3 5.1.0 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
@@ -48,10 +51,11 @@ export DCS=cs.toronto.edu
 export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
 export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
 export CPU1=cpu1.dg
+export COMPS0=comps0.cs.toronto.edu
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
-export STASH="$HOME/School/c_2017_2018"
+export STASH="$HOME/School/c_2018_2019"
 
 # ssh aliases
 alias sshserver='ssh markwang@$SERVERIP'
@@ -63,10 +67,20 @@ alias dcs='ssh wpq@$DCS'
 alias alice='ssh mark@$ALICEDESKTOP'
 alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
+alias wpq='ssh wpq@$COMPS0'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
 alias stash='cd $STASH'
+
+# different versions of julia
+if [ `uname -s` = "Darwin" ]; then 
+    alias julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
+    alias julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
+elif [ `uname -s` = "Linux" ]; then 
+    alias julia7="$HOME/julia-0.7.0/bin/julia"
+    alias julia="$HOME/julia-1.0.0/bin/julia"
+fi
 
 # quick cd's
 alias la='ls -a'
@@ -137,6 +151,14 @@ c_sync(){
     for f in "CSC324" "CSC343" "STA302" "CSC458" "CSC321" "EAS274" "MAT247" "STA414" "CSC488" "CSC473"; do 
         mkdir $src/$f
         rsync -av $src/$f $dest
+    done
+
+    src="/Users/markwang/School/c_2018_2019"
+    dest="/Users/markwang/github/Courses"
+
+    for f in "CSC2520" "MAT327" "MAT347"; do
+        mkdir $src/$f
+        rsync -av $src/$f $dest 
     done
 
 }
