@@ -11,7 +11,7 @@ export PATH="/anaconda2/bin:$PATH"
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
-export PATH="/Applications/MATLAB_R2018a.app/bin:$PATH"
+export PATH="/Applications/MATLAB_R2018b.app/bin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # genome_kit
@@ -55,7 +55,7 @@ export COMPS0=comps0.cs.toronto.edu
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
-export STASH="$HOME/School/c_2017_2018"
+export STASH="$HOME/School/c_2018_2019"
 
 # ssh aliases
 alias sshserver='ssh markwang@$SERVERIP'
@@ -78,7 +78,6 @@ if [ `uname -s` = "Darwin" ]; then
     alias julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
     alias julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
 elif [ `uname -s` = "Linux" ]; then 
-    echo 'here'
     alias julia7="$HOME/julia-0.7.0/bin/julia"
     alias julia="$HOME/julia-1.0.0/bin/julia"
 fi
@@ -152,6 +151,14 @@ c_sync(){
     for f in "CSC324" "CSC343" "STA302" "CSC458" "CSC321" "EAS274" "MAT247" "STA414" "CSC488" "CSC473"; do 
         mkdir $src/$f
         rsync -av $src/$f $dest
+    done
+
+    src="/Users/markwang/School/c_2018_2019"
+    dest="/Users/markwang/github/Courses"
+
+    for f in "CSC2520" "MAT327" "MAT347"; do
+        mkdir $src/$f
+        rsync -av $src/$f $dest 
     done
 
 }
