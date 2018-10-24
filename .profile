@@ -179,13 +179,14 @@ latem() {
         {
             echo "\documentclass[11pt]{article}"
             echo "\input{\string~/.preamble}"
-            echo 
-            echo '\\begin{document}'
+            echo
+            echo \\\\begin{document}
             for i in {1..10}
             do 
                 echo 
             done 
-            echo '\\end{document}'
+            echo \\\\end{document}
+
         } > "$latex_filename.tex"	
     fi
 }
