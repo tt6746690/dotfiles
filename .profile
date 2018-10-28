@@ -8,6 +8,12 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
 export PATH="/anaconda2/bin:$PATH"
+
+# added by Anaconda2 4.4.0 installer
+export PATH="$HOME/anaconda/bin:$PATH"
+# added by Miniconda3 installer
+export PATH="$HOME/miniconda3/bin:$PATH"
+
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
@@ -75,11 +81,11 @@ alias stash='cd $STASH'
 
 # different versions of julia
 if [ `uname -s` = "Darwin" ]; then 
-    alias julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
-    alias julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
+    export julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
+    export julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
 elif [ `uname -s` = "Linux" ]; then 
-    alias julia7="$HOME/julia-0.7.0/bin/julia"
-    alias julia="$HOME/julia-1.0.0/bin/julia"
+    export julia7="$HOME/julia-0.7.0/bin/julia"
+    export julia="$HOME/julia-1.0.0/bin/julia"
 fi
 
 # quick cd's
@@ -179,13 +185,14 @@ latem() {
         {
             echo "\documentclass[11pt]{article}"
             echo "\input{\string~/.preamble}"
-            echo 
-            echo '\\begin{document}'
+            echo
+            echo \\\\begin{document}
             for i in {1..10}
             do 
                 echo 
             done 
-            echo '\\end{document}'
+            echo \\\\end{document}
+
         } > "$latex_filename.tex"	
     fi
 }
