@@ -8,6 +8,12 @@ export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/anaconda3/bin:$PATH"
 # added by Anaconda2 5.1.0 installer
 export PATH="/anaconda2/bin:$PATH"
+
+# added by Anaconda2 4.4.0 installer
+export PATH="$HOME/anaconda/bin:$PATH"
+# added by Miniconda3 installer
+export PATH="$HOME/miniconda3/bin:$PATH"
+
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
