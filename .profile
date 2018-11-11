@@ -81,11 +81,11 @@ alias stash='cd $STASH'
 
 # different versions of julia
 if [ `uname -s` = "Darwin" ]; then 
-    export julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
-    export julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
+    alias julia7="/Applications/Julia-0.7.app/Contents/Resources/julia/bin/julia"
+    alias julia="/Applications/Julia-1.0.app/Contents/Resources/julia/bin/julia"
 elif [ `uname -s` = "Linux" ]; then 
-    export julia7="$HOME/julia-0.7.0/bin/julia"
-    export julia="$HOME/julia-1.0.0/bin/julia"
+    alias julia7="$HOME/julia-0.7.0/bin/julia"
+    alias julia="$HOME/julia-1.0.0/bin/julia"
 fi
 
 # quick cd's
