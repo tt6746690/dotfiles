@@ -5,6 +5,7 @@ home_files="
 .gitconfig
 .khdrc
 .preamble.tex
+.macros.tex
 .profile
 .tmux.conf
 .vimrc
