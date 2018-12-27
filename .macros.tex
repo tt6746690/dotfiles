@@ -3,6 +3,13 @@
 \usepackage{amsthm}
 
 
+% spacings 
+%   https://tex.stackexchange.com/questions/74353/what-commands-are-there-for-horizontal-spacing
+\let\oldexists\exists
+\renewcommand{\exists}{\oldexists\;}
+\let\oldforall\forall
+\renewcommand{\forall}{\oldforall\;}
+
 % operators 
 \newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
