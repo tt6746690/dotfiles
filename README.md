@@ -1,23 +1,4 @@
-
-
-
-
-
-+ _updates dotfile every Monday morning at 4:01AM_
-    + `crontab ./updatetab`
-
-+ _syncing remote every Monday morning at 4:05AM_ 
-    + `crontab ./installtab`
-
-```
-# ./updatetab
-# min hr day(mth) mth day(wk) cmd
-1 4 * * 1 cd ~/.dotfiles && ./dot update
-
-# ./installtab
-# min hr day(mth) mth day(wk) cmd
-5 4 * * 1 cd ~/.dotfiles && ./dot install
-```
+## My Dotfiles
 
 0. [iterm2](https://www.iterm2.com/)
     + update key shortcut for macos [here](https://stackoverflow.com/questions/6205157/iterm-2-how-to-set-keyboard-shortcuts-to-jump-to-beginning-end-of-line)
@@ -52,3 +33,20 @@
 5. system preference > keyboards > modifier keys
 
 
+#### Automatic updates
+
++ _updates dotfile every Monday morning at 4:01AM_
+    + `crontab ./updatetab`
+
++ _syncing remote every Monday morning at 4:05AM_ 
+    + `crontab ./installtab`
+
+```
+# ./updatetab
+# min hr day(mth) mth day(wk) cmd
+1 4 * * 1 cd ~/.dotfiles && ./dot update
+
+# ./installtab
+# min hr day(mth) mth day(wk) cmd
+5 4 * * 1 cd ~/.dotfiles && ./dot install
+```
