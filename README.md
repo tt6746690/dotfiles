@@ -1,6 +1,6 @@
 
 
-## My dotfiles
+
 
 
 + _updates dotfile every Monday morning at 4:01AM_
@@ -19,34 +19,34 @@
 5 4 * * 1 cd ~/.dotfiles && ./dot install
 ```
 
+0. [iterm2](https://www.iterm2.com/)
+    + update key shortcut for macos [here](https://stackoverflow.com/questions/6205157/iterm-2-how-to-set-keyboard-shortcuts-to-jump-to-beginning-end-of-line)
+    + color preset to solarized light
 
-1. install brew
+1. brew
+    ```sh
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
 
-```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
 
-
-2. install [zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
-    ```sh 
+2. [zsh](https://github.com/robbyrussell/oh-my-zsh/wiki/Installing-ZSH) and [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh)
+    ```sh
     brew install zsh zsh-completions 
     sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
     ```
 
 
 3. vundle
-    ```sh 
+    ```sh
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
     ```
     + `PluginInstall`
 
-4. tpm
-    ```sh 
+4. tmux and tpm
+    ```sh
+    brew install tmux
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
     ```
     + `prefix+I`
 
 
-3. [iterm2](https://www.iterm2.com/)
-    + update key shortcut for macos [here](https://stackoverflow.com/questions/6205157/iterm-2-how-to-set-keyboard-shortcuts-to-jump-to-beginning-end-of-line)
-    + color preset to solarized light
