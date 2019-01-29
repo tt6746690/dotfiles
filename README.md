@@ -49,4 +49,6 @@
     ```
     + `prefix+I`
 
+5. system preference > keyboards > modifier keys
+
 
