@@ -17,7 +17,7 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
-export PATH="/Applications/MATLAB_R2018b.app/bin:$PATH"
+export PATH="/Applications/MATLAB_R2019a.app/bin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # genome_kit
@@ -58,6 +58,7 @@ export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
 export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
 export CPU1=cpu1.dg
 export COMPS0=comps0.cs.toronto.edu
+export SCINET=teach.scinet.utoronto.ca
 
 # frequent directories
 export GITHUB_DIR="$HOME/github"
@@ -74,6 +75,7 @@ alias alice='ssh mark@$ALICEDESKTOP'
 alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
 alias wpq='ssh wpq@$COMPS0'
+alias scinet='ssh -Y csc367student028@$SCINET'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
