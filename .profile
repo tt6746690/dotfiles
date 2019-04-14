@@ -17,7 +17,7 @@ export PATH="$HOME/miniconda3/bin:$PATH"
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
-export PATH="/Applications/MATLAB_R2018b.app/bin:$PATH"
+export PATH="/Applications/MATLAB_R2019a.app/bin:$PATH"
 # ccache
 export PATH="/usr/local/opt/ccache/libexec:$PATH"
 # genome_kit
