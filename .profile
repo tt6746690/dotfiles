@@ -13,6 +13,7 @@ export PATH="/anaconda2/bin:$PATH"
 export PATH="$HOME/anaconda/bin:$PATH"
 # added by Miniconda3 installer
 export PATH="$HOME/miniconda3/bin:$PATH"
+
 # gcloud 
 export PATH="$HOME/google-cloud-sdk/bin:$PATH"
 # matlab
@@ -139,6 +140,9 @@ then
 
     export VISUAL="/usr/bin/vim"
     export EDITOR="/usr/bin/vim"
+
+    module load tmux
+    module load tree
 fi
 
 
