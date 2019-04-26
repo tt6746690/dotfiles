@@ -58,6 +58,7 @@ export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
 export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
 export CPU1=cpu1.dg
 export COMPS0=comps0.cs.toronto.edu
+export SLURM=scheduler.cs.toronto.edu   # access GPU nodes
 export SCINET=teach.scinet.utoronto.ca
 
 # frequent directories
@@ -75,6 +76,7 @@ alias alice='ssh mark@$ALICEDESKTOP'
 alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
 alias wpq='ssh wpq@$COMPS0'
+alias wpqs='ssh wpq@$SLURM'
 alias scinet='ssh -Y csc367student028@$SCINET'
 
 # alias for getting around
