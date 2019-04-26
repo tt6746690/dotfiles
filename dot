@@ -5,10 +5,12 @@ home_files="
 .gitconfig
 .khdrc
 .preamble.tex
+.macros.tex
 .profile
 .tmux.conf
 .vimrc
 .zshrc
+.condarc
 "
 
 NVIM_BASE_CONFIG_DIR=".config/nvim"
