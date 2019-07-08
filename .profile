@@ -31,8 +31,6 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # impromptu scripts
 export PATH="$HOME/.scripts:$PATH"
 # cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
 #
 # envs
 #
@@ -78,6 +76,7 @@ alias cpu1='ssh mark.wang@$CPU1'
 alias wpq='ssh wpq@$COMPS0'
 alias wpqs='ssh wpq@$SLURM'
 alias scinet='ssh -Y csc367student028@$SCINET'
+alias zeus='ssh wpq@zeus.dgp.toronto.edu'
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
@@ -166,7 +165,7 @@ c_sync(){
     src="/Users/markwang/School/c_2018_2019"
     dest="/Users/markwang/github/Courses"
 
-    for f in "CSC419" "CSC418" "MAT327" "MAT347" "CSC320" "CSC367" "CSC446"; do
+    for f in "CSC419" "CSC418" "MAT327" "MAT347" "CSC320" "CSC367" "CSC446" "EE364" "APM462"; do
         mkdir $src/$f
         rsync -av $src/$f $dest 
     done
