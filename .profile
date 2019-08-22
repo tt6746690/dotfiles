@@ -41,7 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 # making quartus work on osx
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
 export LANG=en_US.UTF-8       # not existent on OSX, required for quartus
-export DISPLAY=:0.0           # allow for X11fowarding using XQuartz
+export DISPLAY=:0.0              # allow for X11fowarding using XQuartz
 
 # ssh domains
 export SERVERIP=159.203.47.10
