@@ -3,6 +3,8 @@ case `uname -n` in
     quassia|cumin)
     export PATH="/data/vision/polina/shared_software/miniconda3/bin:$PATH"
     export PATH="/afs/csail.mit.edu/system/common/matlab/2018b/bin:$PATH"
+    alias home='cd /data/vision/polina/scratch/wpq'
+    alias fetal='/data/vision/polina/projects/fetal'
 esac
 
 
