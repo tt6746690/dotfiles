@@ -52,7 +52,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git git-extras brew jira json-tools web-search extract themes)
+plugins=(git git-extras brew jira web-search extract themes)
 
 source $ZSH/oh-my-zsh.sh
 
