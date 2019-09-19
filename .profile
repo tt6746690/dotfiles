@@ -73,10 +73,11 @@ alias dcs='ssh wpq@$DCS'
 alias alice='ssh mark@$ALICEDESKTOP'
 alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
-alias wpq='ssh wpq@$COMPS0'
-alias wpqs='ssh wpq@$SLURM'
+alias comps0='ssh wpq@$COMPS0'
+alias compslurm='ssh wpq@$SLURM'
 alias scinet='ssh -Y csc367student028@$SCINET'
 alias zeus='ssh wpq@zeus.dgp.toronto.edu'
+alias cumin='ssh wpq@cumin.csail.mit.edu'   # on CSAIL-Private only
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
@@ -170,6 +171,15 @@ c_sync(){
         rsync -av $src/$f $dest 
     done
 
+}
+
+g_sync(){
+    src="/Users/markwang/School/c_2019_2020"
+    dest="/Users/markwang/github/schoolwork"
+    for f in "6.438"; do
+        mkdir $src/$f
+        rsync -av $src/$f $dest 
+    done
 }
 
 # makes a new latex template with specified filename and populate body with stdio, if exists
