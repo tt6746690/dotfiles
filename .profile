@@ -77,7 +77,7 @@ alias comps0='ssh wpq@$COMPS0'
 alias compslurm='ssh wpq@$SLURM'
 alias scinet='ssh -Y csc367student028@$SCINET'
 alias zeus='ssh wpq@zeus.dgp.toronto.edu'
-alias cumin='ssh wpq@cumin.csail.mit.edu'      # on CSAIL-Private only
+alias cumin='ssh -X wpq@cumin.csail.mit.edu'         # on CSAIL-Private only
 alias quassia='ssh -X wpq@quassia.csail.mit.edu'  # on CSAIL-Private only
 
 # alias for getting around
