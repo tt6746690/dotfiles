@@ -112,7 +112,7 @@ alias cddd='cd ...'
 # shortcuts
 alias rsyncc='/usr/local/Cellar/rsync/3.1.3_1/bin/rsync'
 alias mysql='mysql -u public'
-alias python='python2'
+alias python='python3'
 alias duck='du -sh * | gsort -hr'
 alias stat='stat -x'
 alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
