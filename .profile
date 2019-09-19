@@ -31,8 +31,6 @@ export PATH="/usr/local/mysql/bin:$PATH"
 # impromptu scripts
 export PATH="$HOME/.scripts:$PATH"
 # cargo
-export PATH="$HOME/.cargo/bin:$PATH"
-
 #
 # envs
 #
@@ -43,7 +41,7 @@ export NVM_DIR="$HOME/.nvm"
 # making quartus work on osx
 export LC_ALL=en_US.UTF-8     # not existent on OSX, required for quartus
 export LANG=en_US.UTF-8       # not existent on OSX, required for quartus
-export DISPLAY=:0.0           # allow for X11fowarding using XQuartz
+export DISPLAY=:0.0              # allow for X11fowarding using XQuartz
 
 # ssh domains
 export SERVERIP=159.203.47.10
@@ -58,6 +56,7 @@ export ALICEDESKTOP=192.168.184.236   # on mars-tenant only
 export SHRESHTHDESKTOP=192.168.184.25 # on mars-tenant only
 export CPU1=cpu1.dg
 export COMPS0=comps0.cs.toronto.edu
+export SLURM=scheduler.cs.toronto.edu   # access GPU nodes
 export SCINET=teach.scinet.utoronto.ca
 
 # frequent directories
@@ -74,8 +73,12 @@ alias dcs='ssh wpq@$DCS'
 alias alice='ssh mark@$ALICEDESKTOP'
 alias shresh='ssh mark@$SHRESHTHDESKTOP'
 alias cpu1='ssh mark.wang@$CPU1'
-alias wpq='ssh wpq@$COMPS0'
+alias comps0='ssh wpq@$COMPS0'
+alias compslurm='ssh wpq@$SLURM'
 alias scinet='ssh -Y csc367student028@$SCINET'
+alias zeus='ssh wpq@zeus.dgp.toronto.edu'
+alias cumin='ssh wpq@cumin.csail.mit.edu'      # on CSAIL-Private only
+alias quassia='ssh -X wpq@quassia.csail.mit.edu'  # on CSAIL-Private only
 
 # alias for getting around
 alias github='cd $GITHUB_DIR'
@@ -164,11 +167,20 @@ c_sync(){
     src="/Users/markwang/School/c_2018_2019"
     dest="/Users/markwang/github/Courses"
 
-    for f in "CSC2520" "CSC418" "MAT327" "MAT347" "CSC367" "CSC446"; do
+    for f in "CSC419" "CSC418" "MAT327" "MAT347" "CSC320" "CSC367" "CSC446" "EE364" "APM462"; do
         mkdir $src/$f
         rsync -av $src/$f $dest 
     done
 
+}
+
+g_sync(){
+    src="/Users/markwang/School/c_2019_2020"
+    dest="/Users/markwang/github/schoolwork"
+    for f in "6.438"; do
+        mkdir $src/$f
+        rsync -av $src/$f $dest 
+    done
 }
 
 # makes a new latex template with specified filename and populate body with stdio, if exists
