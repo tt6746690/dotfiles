@@ -1,6 +1,6 @@
 # nfs specific config
 case `uname -n` in
-    quassia|cumin)
+    quassia|cumin|chili|sumac|fennel)
     export PATH="/data/vision/polina/shared_software:$PATH"
     export PATH="/data/vision/polina/shared_software/miniconda3/bin:$PATH"
     export PATH="/afs/csail.mit.edu/system/common/matlab/2018b/bin:$PATH"
