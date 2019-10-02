@@ -56,10 +56,12 @@
 
 ```
 # how to do ssh X11 forwarding 
-who am i # find which ttys of current terminal
-who -a   # find what should display be
-export DISPLAY=.    # set display to that
-ssh -X username@host
+# host
+xhost +
+export DISPLAY=localhost:10.0
+# client
+ssh -Y username@host
+matlab -desktop
 ```
 
 ```
