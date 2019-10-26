@@ -57,8 +57,8 @@
 ```
 # how to do ssh X11 forwarding 
 # host
+export DISPLAY=:0
 xhost +
-export DISPLAY=localhost:10.0
 # client
 ssh -Y username@host
 matlab -desktop
