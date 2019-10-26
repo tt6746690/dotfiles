@@ -120,6 +120,7 @@ alias rmswp='find ./ -maxdepth 1 -type f -name "\.*sw[klmnop]" -delete'
 alias gitc="eval $(ssh-agent -s)  ssh-add ~/.ssh/github_rsa"        # for git pull on cdf
 alias mb="cmake -H. -Bcmake-build-debug -Wno-dev"
 alias mm="cmake --build cmake-build-debug -- -j5"
+alias tkt='kinit wpq@CSAIL.MIT.EDU'
 
 # tmux
 export DISABLE_AUTO_TITLE=true                      #  for persistent tmux window names 
