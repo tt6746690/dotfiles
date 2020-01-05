@@ -1,7 +1,7 @@
 #
 # nfs specific config
 case `uname -n` in
-    quassia|cumin|chili|sumac|fennel)
+    quassia|cumin|marjoram|thyme|zaatar|bergamot|peppermint|mint|anise|olida|cassia|jimbu|juniper|neem|malt|mace|wasabi|chili|pandan|fennel|sumac)
     export PATH="/data/vision/polina/shared_software:$PATH"
     export PATH="/data/vision/polina/shared_software/miniconda3/bin:$PATH"
     export PATH="/data/vision/polina/scratch/wpq/medical_vision/external/ANTs/bin/antsBuild/ANTS-build/Examples:$PATH"
@@ -227,7 +227,3 @@ latem() {
         } > "$latex_filename.tex"	
     fi
 }
-
-
-
-
