@@ -12,35 +12,40 @@ esac
 
 # PATH
 #
-# haskell installed pkgs 
-export PATH="$HOME/Library/Haskell/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-# added by Anaconda3 5.1.0 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
-# added by Anaconda2 5.1.0 installer
-export PATH="/anaconda2/bin:$PATH"
+if [ `uname -s` = "Darwin" ]; then
+    # haskell installed pkgs 
+    export PATH="$HOME/Library/Haskell/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
+    # added by Anaconda3 5.1.0 installer
+    export PATH="$HOME/anaconda3/bin:$PATH"
+    # added by Anaconda2 5.1.0 installer
+    export PATH="/anaconda2/bin:$PATH"
 
-# added by Anaconda2 4.4.0 installer
-export PATH="$HOME/anaconda/bin:$PATH"
-# added by Miniconda3 installer
-export PATH="$HOME/miniconda3/bin:$PATH"
+    # added by Anaconda2 4.4.0 installer
+    export PATH="$HOME/anaconda/bin:$PATH"
+    # added by Miniconda3 installer
+    export PATH="$HOME/miniconda3/bin:$PATH"
 
-# gcloud 
-export PATH="$HOME/google-cloud-sdk/bin:$PATH"
-# matlab
-export PATH="/Applications/MATLAB_R2019a.app/bin:$PATH"
-# ccache
-export PATH="/usr/local/opt/ccache/libexec:$PATH"
-# genome_kit
-export PATH="$HOME/github/GenomeKit/genome_kit:$PATH"
-# samtools
-export PATH="$HOME/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
-# ruby
-export PATH="/usr/local/Cellar/ruby/2.4.0/bin:$PATH"
-# mysql
-export PATH="/usr/local/mysql/bin:$PATH"
-# impromptu scripts
-export PATH="$HOME/.scripts:$PATH"
+    # gcloud 
+    export PATH="$HOME/google-cloud-sdk/bin:$PATH"
+    # matlab
+    export PATH="/Applications/MATLAB_R2019a.app/bin:$PATH"
+    # ccache
+    export PATH="/usr/local/opt/ccache/libexec:$PATH"
+    # genome_kit
+    export PATH="$HOME/github/GenomeKit/genome_kit:$PATH"
+    # samtools
+    export PATH="$HOME/github/htsget/lib/samtools-1.5/bin/bin:$PATH"
+    # ruby
+    export PATH="/usr/local/Cellar/ruby/2.4.0/bin:$PATH"
+    # mysql
+    export PATH="/usr/local/mysql/bin:$PATH"
+    # impromptu scripts
+    export PATH="$HOME/.scripts:$PATH"
+
+fi
+
+
 # cargo
 #
 # envs
