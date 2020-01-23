@@ -1,10 +1,7 @@
 HOME_BASE_DIR="/"
 home_files="
 .bashrc
-.khdrc
 .gitconfig
-.khdrc
-.preamble.tex
 .macros.tex
 .profile
 .tmux.conf
@@ -18,16 +15,6 @@ nvim_files="
 init.vim
 "
 
-KWM_BASE_CONFIG_DIR=".kwm"
-kwm_files="
-khdrc
-kwmrc
-"
-
-VIM_BASE_CONFIG_DIR=".vim"
-ycm_files="
-.ycm_extra_conf.py
-"
 
 dotsync(){
     # @param 1: dirname of filepath after $HOME
@@ -60,8 +47,6 @@ dotsync(){
 transfer(){
     dotsync $HOME_BASE_DIR $home_files
     dotsync $NVIM_BASE_CONFIG_DIR $nvim_files
-    dotsync $KWM_BASE_CONFIG_DIR $kwm_files
-    dotsync $VIM_BASE_CONFIG_DIR $ycm_files
 }
 
 update(){

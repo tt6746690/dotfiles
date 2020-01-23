@@ -1,15 +1,11 @@
 # This is Git's per-user configuration file.
 [user]
-# Please adapt and uncomment the following lines:
-#	name = Mark Wang
-#	email = markwang@Marks-MacBook-Pro.local
-[user]
 	email = peiqi1122@gmail.com
-	name = Mark
+	name = Mark Wang
 [core] 
 	editor = nano
 	ignorecase = false
-	; excludesfile = /Users/markwang/.gitignore_global
+	excludesfile = ~/.gitignore
 
 [alias]
   # Show verbose output about tags, branches or remotes
@@ -19,8 +15,6 @@
   # Pretty log output
   hist = log --graph --pretty=format:'%Cred%h%Creset %s%C(yellow)%d%Creset %Cgreen(%cr)%Creset [%an]' --abbrev-commit --date=relative
     dfw =  diff --word-diff=plain --ignore-space-at-eol --color-words 
-
-
 
 [color]
   # Use colors in Git commands that are capable of colored output when outputting to the terminal

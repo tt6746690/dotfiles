@@ -33,6 +33,10 @@
 5. system preference > keyboards > modifier keys
 
 
+6. Zotero/ZotFile (http://zotfile.com/)
+
+
+
 #### Automatic updates
 
 + _updates dotfile every Monday morning at 4:01AM_

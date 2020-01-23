@@ -7,7 +7,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-# ZSH_THEME=""
+ZSH_THEME=""
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -52,7 +52,7 @@ export ZSH=$HOME/.oh-my-zsh
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git git-extras brew jira web-search extract themes)
+plugins=(git git-extras brew web-search extract themes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,7 +88,6 @@ source $ZSH/oh-my-zsh.sh
 
 # source .profile
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-
 
 
 # changes hex 0x15 to delete everything to the left of the cursor,

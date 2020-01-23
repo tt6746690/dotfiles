@@ -1,8 +1,3 @@
-
 channels:
     - defaults
     - conda-forge
-    - deepgenomics
-    - bioconda
-    - r
-
