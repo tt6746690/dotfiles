@@ -4,7 +4,7 @@
     + update key shortcut for macos [here](https://stackoverflow.com/questions/6205157/iterm-2-how-to-set-keyboard-shortcuts-to-jump-to-beginning-end-of-line)
     + color preset to solarized light
 
-1. brew
+1. [brew](https://brew.sh/)
     ```sh
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
     ```
@@ -17,23 +17,24 @@
     ```
 
 
-3. vundle
+3. [vundle](https://github.com/VundleVim/Vundle.vim.git)
     ```sh
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
     ```
     + `PluginInstall`
 
-4. tmux and tpm
+4. tmux and [tpm](https://github.com/tmux-plugins/tpm)
     ```sh
-    brew install tmux
+    brew install tmux reattach-to-user-namespace
     git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+    tmux source ~/.tmux.conf
     ```
     + `prefix+I`
 
 5. system preference > keyboards > modifier keys
 
 
-6. Zotero/ZotFile (http://zotfile.com/)
+6. Zotero [ZotFile](http://zotfile.com/)
 
 
 
