@@ -38,7 +38,7 @@ if [ `uname -s` = "Darwin" ]; then
     alias quassia='ssh -X wpq@quassia.csail.mit.edu'  # on CSAIL-Private only
 
     # other alises
-    alias stash='cd $HOME/School/c_2019_2020'
+    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2019.2020'
     alias duck='du -sh * | gsort -hr'
     alias stat='stat -x'
     alias tkt='kinit wpq@CSAIL.MIT.EDU'
@@ -72,6 +72,23 @@ if [ `uname -s` = "Darwin" ]; then
     # 2019 MacBook
     #
     if [ `id -un` = "wpq" ]; then
+
+        # added by Miniconda3 4.7.12 installer
+        # >>> conda init >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/wpq/opt/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            \eval "$__conda_setup"
+        else
+            if [ -f "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh"
+                CONDA_CHANGEPS1=false conda activate base
+            else
+                \export PATH="/Users/wpq/opt/miniconda3/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+        # <<< conda init <<<
         
     fi
 fi
@@ -105,38 +122,38 @@ esac
 
 
 c_sync(){
-    src="$HOME/School/c_2016_2017"
+    src="$HOME/Dropbox (MIT)/School/2016.2017"
     dest="$HOME/github/Courses"
 
     for f in "STA247" "STA261" "CSC207" "CSC209" "CSC236" "CSC263" "CSC258" "MAT237" "CSC369" "CSC373"; do
-        mkdir $src/$f
+        mkdir "$dest" ||:
         rsync -av $src/$f $dest
     done
 
-    src="/School/c_2017_2018"
+    src="$HOME/Dropbox (MIT)/School/2017.2018"
     dest="$HOME/github/Courses"
 
     for f in "CSC324" "CSC343" "STA302" "CSC458" "CSC321" "EAS274" "MAT247" "STA414" "CSC488" "CSC473"; do 
-        mkdir $src/$f
+        mkdir "$dest" ||:
         rsync -av $src/$f $dest
     done
 
-    src="$HOME/School/c_2018_2019"
+    src="$HOME/Dropbox (MIT)/School/2018.2019"
     dest="$HOME/github/Courses"
 
     for f in "CSC419" "CSC418" "MAT327" "MAT347" "CSC320" "CSC367" "CSC446" "EE364" "APM462"; do
-        mkdir $src/$f
+        mkdir "$dest" ||:
         rsync -av $src/$f $dest 
     done
 
 }
 
 g_sync(){
-    src="$HOME/School/c_2019_2020"
+    src="$HOME/Dropbox (MIT)/School/2019.2020"
     dest="$HOME/github/schoolwork"
-    for f in "6.438"; do
-        mkdir $src/$f
-        rsync -av $src/$f $dest 
+    for f in "6.438" "6.437" "6.881"; do
+        mkdir "$dest" ||:
+        rsync -av "$src/$f" "$dest"
     done
 }
 
