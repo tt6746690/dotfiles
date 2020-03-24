@@ -113,8 +113,9 @@ case `uname -n` in
     # loads scripts for shared application provided by CSAIL server
     source /afs/csail.mit.edu/system/common/etc/environment/sh/matlab
 
-    alias julia7="$HOME/julia-0.7.0/bin/julia"
-    alias julia="$HOME/julia-1.0.0/bin/julia"
+    # julia
+    export PATH="/data/vision/polina/shared_software/julia-1.0.5/bin:$PATH"
+
 esac
 
 
