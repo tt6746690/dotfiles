@@ -114,7 +114,7 @@ case `uname -n` in
     source /afs/csail.mit.edu/system/common/etc/environment/sh/matlab
 
     # julia
-    export PATH="/data/vision/polina/shared_software/julia-1.0.5/bin:$PATH"
+    export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
 
 esac
 
