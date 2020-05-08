@@ -34,8 +34,10 @@ if [ `uname -s` = "Darwin" ]; then
     alias compslurm='ssh wpq@$scheduler.cs.toronto.edu' # access GPU nodes
     alias scinet='ssh -Y csc367student028@teach.scinet.utoronto.ca'
     alias zeus='ssh wpq@zeus.dgp.toronto.edu'
-    alias cumin='ssh -X wpq@cumin.csail.mit.edu'      # on CSAIL-Private only
-    alias quassia='ssh -X wpq@quassia.csail.mit.edu'  # on CSAIL-Private only
+    alias cumin='ssh -X wpq@cumin.csail.mit.edu'      # on MIT network only
+    alias quassia='ssh -X wpq@quassia.csail.mit.edu'  # on MIT network only
+    alias chili='ssh -X wpq@chili.csail.mit.edu'      # on MIT network only
+    alias athena='ssh athena.dialup.mit.edu'
 
     # other alises
     alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2019.2020'
