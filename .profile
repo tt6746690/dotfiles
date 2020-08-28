@@ -40,7 +40,7 @@ if [ `uname -s` = "Darwin" ]; then
     alias athena='ssh athena.dialup.mit.edu'
 
     # other alises
-    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2019.2020'
+    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2020.2021'
     alias duck='du -sh * | gsort -hr'
     alias stat='stat -x'
     alias tkt='kinit wpq@CSAIL.MIT.EDU'
@@ -155,6 +155,12 @@ g_sync(){
     src="$HOME/Dropbox (MIT)/School/2019.2020"
     dest="$HOME/github/schoolwork"
     for f in "6.438" "6.437" "6.881"; do
+        mkdir "$dest" ||:
+        rsync -av "$src/$f" "$dest"
+    done
+    src="$HOME/Dropbox (MIT)/School/2020.2021"
+    dest="$HOME/github/schoolwork"
+    for f in "6.436" "18_100B"; do
         mkdir "$dest" ||:
         rsync -av "$src/$f" "$dest"
     done
