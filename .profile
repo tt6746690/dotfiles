@@ -160,7 +160,7 @@ g_sync(){
     done
     src="$HOME/Dropbox (MIT)/School/2020.2021"
     dest="$HOME/github/schoolwork"
-    for f in "6.436" "18_100B"; do
+    for f in "6.436" "18.1002"; do
         mkdir "$dest" ||:
         rsync -av "$src/$f" "$dest"
     done
