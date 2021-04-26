@@ -80,13 +80,13 @@ if [ `uname -s` = "Darwin" ]; then
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$(CONDA_REPORT_ERRORS=false '/Users/wpq/opt/miniconda3/bin/conda' shell.bash hook 2> /dev/null)"
         if [ $? -eq 0 ]; then
-            \eval "$__conda_setup"
+            eval "$__conda_setup"
         else
             if [ -f "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh" ]; then
                 . "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh"
                 CONDA_CHANGEPS1=false conda activate base
             else
-                \export PATH="/Users/wpq/opt/miniconda3/bin:$PATH"
+                export PATH="/Users/wpq/opt/miniconda3/bin:$PATH"
             fi
         fi
         unset __conda_setup
@@ -160,7 +160,7 @@ g_sync(){
     done
     src="$HOME/Dropbox (MIT)/School/2020.2021"
     dest="$HOME/github/schoolwork"
-    for f in "6.436" "18.1002"; do
+    for f in "6.436" "18.1002" "6.838"; do
         mkdir "$dest" ||:
         rsync -av "$src/$f" "$dest"
     done
