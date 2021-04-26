@@ -99,7 +99,7 @@ fi
 # server specific settings
 #
 case `uname -n` in
-    quassia|cumin|sumac|fennel|pandan|chili|wasabi|mace|malt|neem|juniper|jimbu|cassia|olida|anise|mint|peppermint|bergamot|zaatar|thyme|marjoram|perilla|lemongrass|clove|curcum|sassafras)
+    quassia|cumin|marjoram|thyme|zaatar|bergamot|peppermint|mint|anise|olida|cassia|jimbu|juniper|neem|malt|mace|wasabi|chili|pandan|fennel|sumac)
 
     # shared software
     export PATH="/data/vision/polina/shared_software:$PATH"
@@ -118,6 +118,21 @@ case `uname -n` in
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
 
+
+    # >>> conda initialize >>>
+    # !! Contents within this block are managed by 'conda init' !!
+    __conda_setup="$('/data/vision/polina/shared_software/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+    if [ $? -eq 0 ]; then
+        eval "$__conda_setup"
+    else
+        if [ -f "/data/vision/polina/shared_software/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/data/vision/polina/shared_software/miniconda3/etc/profile.d/conda.sh"
+        else
+            export PATH="/data/vision/polina/shared_software/miniconda3/bin:$PATH"
+        fi
+    fi
+    unset __conda_setup
+     # >>> conda initialize >>>
 esac
 
 
