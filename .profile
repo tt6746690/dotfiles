@@ -99,7 +99,7 @@ fi
 # server specific settings
 #
 case `uname -n` in
-    quassia|cumin|marjoram|thyme|zaatar|bergamot|peppermint|mint|anise|olida|cassia|jimbu|juniper|neem|malt|mace|wasabi|chili|pandan|fennel|sumac)
+    quassia|cumin|sumac|fennel|pandan|chili|wasabi|mace|malt|neem|juniper|jimbu|cassia|olida|anise|mint|peppermint|bergamot|zaatar|thyme|marjoram|perilla|lemongrass|clove|curcum|sassafras)
 
     # shared software
     export PATH="/data/vision/polina/shared_software:$PATH"
