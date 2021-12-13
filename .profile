@@ -175,6 +175,12 @@ g_sync(){
         mkdir "$dest" ||:
         rsync -av "$src/$f" "$dest"
     done
+    src="$HOME/Dropbox (MIT)/School/2021.2022"
+    dest="$HOME/github/schoolwork"
+    for f in "6.840" "6.864"; do
+        mkdir "$dest" ||:
+        rsync -av "$src/$f" "$dest"
+    done
 }
 
 # makes a new latex template with specified filename and populate body with stdio, if exists
