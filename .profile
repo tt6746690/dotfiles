@@ -40,7 +40,7 @@ if [ `uname -s` = "Darwin" ]; then
     alias athena='ssh athena.dialup.mit.edu'
 
     # other alises
-    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2020.2021'
+    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2021.2022'
     alias duck='du -sh * | gsort -hr'
     alias stat='stat -x'
     alias tkt='kinit wpq@CSAIL.MIT.EDU'
