@@ -1,6 +1,3 @@
-# common aliases
-alias github='cd $HOME/github'
-
 # quick cd's
 alias la='ls -a'
 alias ll='ls -la'
@@ -44,6 +41,7 @@ if [ `uname -s` = "Darwin" ]; then
     alias duck='du -sh * | gsort -hr'
     alias stat='stat -x'
     alias tkt='kinit wpq@CSAIL.MIT.EDU'
+    alias github='cd $HOME/github'
 
     #
     # 2015 MacBook
@@ -106,7 +104,8 @@ case `uname -n` in
 
     # aliases
     alias home='cd /data/vision/polina/scratch/wpq'
-    alias fetal='/data/vision/polina/projects/fetal'
+    alias fetal='cd /data/vision/polina/projects/fetal'
+    alias github='cd /data/visoin/polina/scratch/wpq/github'
 
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
