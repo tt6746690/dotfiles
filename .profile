@@ -114,9 +114,8 @@ case `uname -n` in
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
 
-    # huggingface
+    # huggingface 
     export HF_HOME='/data/vision/polina/scratch/wpq/github/huggingface_cache'
-
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
