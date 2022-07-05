@@ -22,4 +22,5 @@ cd /data/vision/polina/scratch/wpq/github/dotfiles
 ./dot install
 
 # If following error happens, will not reach here.
+cd install_dotfiles
 rm "slurm-${JOB_ID}.out"
