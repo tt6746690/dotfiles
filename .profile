@@ -105,7 +105,7 @@ case `uname -n` in
     # aliases
     alias home='cd /data/vision/polina/scratch/wpq'
     alias fetal='cd /data/vision/polina/projects/fetal'
-    alias github='cd /data/visoin/polina/scratch/wpq/github'
+    alias github='cd /data/vision/polina/scratch/wpq/github'
 
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
