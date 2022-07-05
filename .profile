@@ -108,9 +108,6 @@ case `uname -n` in
     alias home='cd /data/vision/polina/scratch/wpq'
     alias fetal='/data/vision/polina/projects/fetal'
 
-    # loads scripts for shared application provided by CSAIL server
-    source /afs/csail.mit.edu/system/common/etc/environment/sh/matlab
-
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
 
