@@ -55,3 +55,16 @@
 # min hr day(mth) mth day(wk) cmd
 5 4 * * 1 cd ~/.dotfiles && ./dot install
 ```
+
+#### MacOS specifics 
+
+
+```
+# .gitconfig for MacOS
+[credential]
+	helper = store
+	helper =
+	helper = /usr/local/share/gcm-core/git-credential-manager-core
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+```
