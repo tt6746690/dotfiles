@@ -1,0 +1,17 @@
+wasabi
+installing ...
+Already up to date.
+Copy over dotfiles...
+Copy over .bashrc
+Copy over .gitconfig
+Copy over .macros.tex
+Copy over .profile
+Copy over .tmux.conf
+Copy over .vimrc
+Copy over .zshrc
+Copy over .condarc
+Copy finished...
+Copy over dotfiles...
+Copy over init.vim
+Copy finished...
+rm: cannot remove 'slurm-107838.out': No such file or directory
