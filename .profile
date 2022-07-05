@@ -95,7 +95,7 @@ fi
 # server specific settings
 #
 case `uname -n` in
-    quassia|cumin|sumac|fennel|pandan|chili|wasabi|mace|malt|neem|juniper|jimbu|cassia|olida|anise|mint|peppermint|bergamot|zaatar|thyme|marjoram|perilla|lemongrass|clove|curcum|sassafras)
+    quassia|cumin|sumac|fennel|pandan|chili|wasabi|mace|malt|neem|juniper|jimbu|cassia|olida|anise|mint|peppermint|bergamot|zaatar|thyme|marjoram|perilla|lemongrass|clove|curcum|sassafras|urfa-biber)
 
     # shared software
     export PATH="/data/vision/polina/shared_software:$PATH"
@@ -113,6 +113,9 @@ case `uname -n` in
 
     # julia
     export PATH="/data/vision/polina/shared_software/julia-1.4.0/bin:$PATH"
+
+    # huggingface
+    export HF_HOME='/data/vision/polina/scratch/wpq/github/huggingface_cache'
 
 
     # >>> conda initialize >>>
