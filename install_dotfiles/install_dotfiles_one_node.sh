@@ -28,15 +28,21 @@ if [ ! -d ~/.vim/bundle/Vundle.vim ] ; then
     git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim  
 fi
 if [ ! -d ~/.tmux/plugins/tpm ] ; then
-    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm 
+    git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 fi
 
 echo ./dot install
 cd /data/vision/polina/scratch/wpq/github/dotfiles
 ./dot install
 
-
+# Update software's configs, given
+# Vundle: quiet install while ignoring errors when parsing `.vimrc`
+# vim +PluginInstall +qall
+vim -E -s -u ~/.vimrc +PlugInstall +qall
+# tpm
+ ~/.tmux/plugins/tpm/bin/install_plugins
+tmux source ~/.tmux.conf
 
 # If following error happens, will not reach here.
-cd install_dotfiles
-# rm "slurm-${JOB_ID}.out"
+cd /data/vision/polina/scratch/wpq/github/dotfiles/install_dotfiles
+rm "slurm-${JOB_ID}.out"
