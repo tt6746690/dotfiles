@@ -40,7 +40,7 @@ cd /data/vision/polina/scratch/wpq/github/dotfiles
 # vim +PluginInstall +qall
 vim -E -s -u ~/.vimrc +PlugInstall +qall
 # tpm
- ~/.tmux/plugins/tpm/bin/install_plugins
+~/.tmux/plugins/tpm/bin/install_plugins
 tmux source ~/.tmux.conf
 
 # If following error happens, will not reach here.
