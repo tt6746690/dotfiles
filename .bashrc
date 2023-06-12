@@ -1,3 +1,26 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
 
 # source .profile
 [[ -e ~/.profile ]] && `source ~/.profile`
+
+
+if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
+    # setting shell to zsh in .profile does not work (cannot see stdout)
+    if [ "${zsh_version:-unset}" = "unset" ] && [ -z "$ZSH_VERSION"  ] ; then
+        export SHELL=/usr/bin/zsh
+        exec /usr/bin/zsh -l
+    fi
+fi

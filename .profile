@@ -114,11 +114,6 @@ fi
 # ibm ccc server
 # 
 if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
-    
-    # use zsh instead of bash with non-root access
-    export SHELL=/usr/bin/zsh
-    [ -z "$ZSH_VERSION" ] && exec /usr/bin/zsh -l
-
 
     # Uncomment the following line if you don't like systemctl's auto-paging feature:
     # export SYSTEMD_PAGER=
