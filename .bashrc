@@ -23,7 +23,7 @@ if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
 fi
 
 
-if [[ $(hostname) == satori* ]] && [[ $(uname) == Linux ]]; then
+if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] && [[ $(uname) == Linux  ]]; then
     # Source global definitions
     if [ -f /etc/bashrc ]; then
             . /etc/bashrc

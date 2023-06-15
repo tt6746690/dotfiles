@@ -137,7 +137,10 @@ if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
 
 fi
 
-if [[ $(hostname) == satori* ]] && [[ $(uname) == Linux ]]; then
+#
+# satori
+#
+if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] && [[ $(uname) == Linux  ]]; then
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
