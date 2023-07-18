@@ -44,3 +44,4 @@ if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] &
         exec /usr/bin/zsh -l
     fi
 fi
+
