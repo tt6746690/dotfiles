@@ -171,6 +171,9 @@ if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) 
     export http_proxy=http://proxy:8888
     export https_proxy=$http_proxy
 
+    # huggingface
+    export HF_HOME='/gpfs/u/scratch/PTFM/PTFMqngp/huggingface_cache'
+
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
     __conda_setup="$('/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
