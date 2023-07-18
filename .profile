@@ -162,7 +162,8 @@ fi
 #
 # aimos
 #
-if [[ $(uname -m) == "ppc64le" ]]; then
+allowed_hostnames=("blp01.ccni.rpi.edu" "blp02.ccni.rpi.edu" "blp03.ccni.rpi.edu" "blp04.ccni.rpi.edu" "dcsfen01.ccni.rpi.edu" "dcsfen02.ccni.rpi.edu" "nplfen01.ccni.rpi.edu")
+if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) == "ppc64le" ]]; then
     # setup Proxy: https://docs.cci.rpi.edu/landingpads/Proxy/
     export http_proxy=http://proxy:8888
     export https_proxy=$http_proxy
