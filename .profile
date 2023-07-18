@@ -185,6 +185,9 @@ if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) 
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+
+    # add cudnn binaries to PATH
+    export LD_LIBRARY_PATH=/gpfs/u/scratch/PTFM/PTFMqngp/tools/cudnn-11.3-linux-ppc64le-v8.2.1.32/targets/ppc64le-linux/lib:$LD_LIBRARY_PATH
 fi
 
 
