@@ -170,7 +170,6 @@ if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) 
 fi
 
 
-
 #
 # server specific settings
 #
