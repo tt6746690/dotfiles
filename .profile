@@ -159,6 +159,16 @@ if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] &
 
 fi
 
+#
+# aimos
+#
+if [[ $(uname -m) == "ppc64le" ]]; then
+    # setup Proxy: https://docs.cci.rpi.edu/landingpads/Proxy/
+    export http_proxy=http://proxy:8888
+    export https_proxy=$http_proxy
+fi
+
+
 
 #
 # server specific settings
