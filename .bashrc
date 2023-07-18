@@ -1,6 +1,8 @@
 
 # source .profile
-[[ -e ~/.profile ]] && `source ~/.profile`
+if [ -f ~/.profile ]; then
+	. ~/.profile
+fi
 
 if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
     # Source global definitions

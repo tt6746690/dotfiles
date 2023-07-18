@@ -1,3 +1,4 @@
+
 # quick cd's
 alias la='ls -a'
 alias ll='ls -la'
@@ -158,6 +159,8 @@ if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] &
     # <<< conda initialize <<<
 
 fi
+
+
 
 #
 # aimos
