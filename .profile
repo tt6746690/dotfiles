@@ -116,10 +116,9 @@ fi
 # 
 if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
 
-    # Uncomment the following line if you don't like systemctl's auto-paging feature:
-    # export SYSTEMD_PAGER=
+    export HF_HOME='/dccstor/mit_fm/wpq/hf_cache'
+    export OPENAI_API_KEY=$(cat ~/.openai_api_key)
 
-    # User specific aliases and functions
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -171,8 +170,8 @@ if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) 
     export http_proxy=http://proxy:8888
     export https_proxy=$http_proxy
 
-    # huggingface
     export HF_HOME='/gpfs/u/scratch/PTFM/PTFMqngp/huggingface_cache'
+    export OPENAI_API_KEY=$(cat ~/.openai_api_key)
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
