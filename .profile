@@ -182,6 +182,9 @@ check_hostname() {
 
 # Call the function to check the hostname
 if check_hostname "$(hostname -f)"; then
+
+    alias github='cd /gpfs/u/scratch/PTFM/PTFMqngp/github'
+
     # setup Proxy: https://docs.cci.rpi.edu/landingpads/Proxy/
     export http_proxy=http://proxy:8888
     export https_proxy=$http_proxy
