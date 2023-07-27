@@ -164,8 +164,24 @@ fi
 #
 # aimos
 #
-allowed_hostnames=("blp01.ccni.rpi.edu" "blp02.ccni.rpi.edu" "blp03.ccni.rpi.edu" "blp04.ccni.rpi.edu" "dcsfen01.ccni.rpi.edu" "dcsfen02.ccni.rpi.edu" "nplfen01.ccni.rpi.edu")
-if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) == "ppc64le" ]]; then
+
+# List of hostname patterns to match against
+aimos_hostnames=("npl*" "blp*.ccni.rpi.edu" "dcs*.ccni.rpi.edu")
+
+# Function to check if the hostname matches any pattern
+check_hostname() {
+    local hostname="$1"
+    for pattern in "${aimos_hostnames[@]}"; do
+        if [[ "$hostname" == $pattern  ]]; then
+            return 0
+        fi
+    done
+    return 1
+}
+
+
+# Call the function to check the hostname
+if check_hostname "$(hostname -f)"; then
     # setup Proxy: https://docs.cci.rpi.edu/landingpads/Proxy/
     export http_proxy=http://proxy:8888
     export https_proxy=$http_proxy
@@ -173,23 +189,50 @@ if  [[ " ${allowed_hostnames[*]} " == *" $(hostname -f) "* ]] || [[ $(uname -m) 
     export HF_HOME='/gpfs/u/scratch/PTFM/PTFMqngp/huggingface_cache'
     export OPENAI_API_KEY=$(cat ~/.openai_api_key)
 
-    # >>> conda initialize >>>
-    # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-    if [ $? -eq 0 ]; then
-        eval "$__conda_setup"
-    else
-        if [ -f "/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/etc/profile.d/conda.sh" ]; then
-            . "/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/etc/profile.d/conda.sh"
+    # dcs
+    if [[ $(uname -m) == "ppc64le" ]]; then
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
         else
-            export PATH="/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/bin:$PATH"
+            if [ -f "/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/etc/profile.d/conda.sh"
+            else
+                export PATH="/gpfs/u/scratch/PTFM/PTFMqngp/miniconda3/bin:$PATH"
+            fi
         fi
-    fi
-    unset __conda_setup
-    # <<< conda initialize <<<
+        unset __conda_setup
+        # <<< conda initialize <<<
 
-    # add cudnn binaries to PATH
-    export LD_LIBRARY_PATH=/gpfs/u/scratch/PTFM/PTFMqngp/tools/cudnn-11.3-linux-ppc64le-v8.2.1.32/targets/ppc64le-linux/lib:$LD_LIBRARY_PATH
+        # add cudnn binaries to PATH
+        export LD_LIBRARY_PATH=/gpfs/u/scratch/PTFM/PTFMqngp/tools/cudnn-11.3-linux-ppc64le-v8.2.1.32/targets/ppc64le-linux/lib:$LD_LIBRARY_PATH
+    fi
+
+    # npl
+    if [[ $(uname -m) == "x86_64" ]]; then
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:.//cuda-11.2/lib64
+        export PATH=$PATH:.//cuda-11.2/bin
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/gpfs/u/scratch/PTFM/PTFMqngp/tools/cuda-11.2/lib64
+        export PATH=$PATH:/gpfs/u/scratch/PTFM/PTFMqngp/tools/cuda-11.2/bin
+
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('/gpfs/u/scratch/PTFM/PTFMqngp/minoconda3_x86/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "/gpfs/u/scratch/PTFM/PTFMqngp/minoconda3_x86/etc/profile.d/conda.sh" ]; then
+                . "/gpfs/u/scratch/PTFM/PTFMqngp/minoconda3_x86/etc/profile.d/conda.sh"
+            else
+                export PATH="/gpfs/u/scratch/PTFM/PTFMqngp/minoconda3_x86/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+        # <<< conda initialize <<<
+    fi
+
 fi
 
 
