@@ -211,6 +211,9 @@ if check_hostname "$(hostname -f)"; then
 
         # add cudnn binaries to PATH
         export LD_LIBRARY_PATH=/gpfs/u/scratch/PTFM/PTFMqngp/tools/cudnn-11.3-linux-ppc64le-v8.2.1.32/targets/ppc64le-linux/lib:$LD_LIBRARY_PATH
+	
+	# add rust to path
+	. "$HOME/.cargo/env"
     fi
 
     # npl
