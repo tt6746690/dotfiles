@@ -131,20 +131,20 @@ fi
 # 
 if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
 
-    export HF_HOME='/dccstor/mit_fm/wpq/hf_cache'
+    export HF_HOME='/dccstor/data-pruning/wpq/hf_cache'
     export OPENAI_API_KEY=$(cat ~/.openai_api_key)
 
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
-    __conda_setup="$('/dccstor/mit_fm/miniconda/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+    __conda_setup="$('/dccstor/data-pruning/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
     if [ $? -eq 0 ]; then
         eval "$__conda_setup"
     else
-        if [ -f "/dccstor/mit_fm/miniconda/etc/profile.d/conda.sh" ]; then
-            . "/dccstor/mit_fm/miniconda/etc/profile.d/conda.sh"
+        if [ -f "/dccstor/data-pruning/miniconda3/etc/profile.d/conda.sh" ]; then
+            . "/dccstor/data-pruning/miniconda3/etc/profile.d/conda.sh"
         else
-            export PATH="/dccstor/mit_fm/miniconda/bin:$PATH"
+            export PATH="/dccstor/data-pruning/miniconda3/bin:$PATH"
         fi
     fi
     unset __conda_setup
