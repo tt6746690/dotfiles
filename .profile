@@ -133,7 +133,7 @@ if [[ $(hostname) == ccc* ]] && [[ $(uname) == Linux ]]; then
 
     export HF_HOME='/dccstor/data-pruning/wpq/hf_cache'
     export OPENAI_API_KEY=$(cat ~/.openai_api_key)
-
+    export JB_INFO_DONE_MIN='1'
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
