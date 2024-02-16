@@ -285,7 +285,7 @@ fi
 # server specific settings
 #
 case `uname -n` in
-    quassia|cumin|sumac|fennel|pandan|chili|wasabi|mace|malt|neem|juniper|jimbu|cassia|olida|anise|mint|peppermint|bergamot|zaatar|thyme|marjoram|perilla|lemongrass|clove|curcum|sassafras|urfa-biber|rosemary|caraway|sumac.csail.mit.edu|fennel.csail.mit.edu|rosemary.csail.mit.edu|urfa-biber.csail.mit.edu)
+    basil.csail.mit.edu|quassia.csail.mit.edu|cumin.csail.mit.edu|sumac.csail.mit.edu|fennel.csail.mit.edu|pandan.csail.mit.edu|chili.csail.mit.edu|wasabi.csail.mit.edu|mace.csail.mit.edu|malt.csail.mit.edu|neem.csail.mit.edu|juniper.csail.mit.edu|jimbu.csail.mit.edu|cassia.csail.mit.edu|olida.csail.mit.edu|anise.csail.mit.edu|mint.csail.mit.edu|peppermint.csail.mit.edu|bergamot.csail.mit.edu|zaatar.csail.mit.edu|thyme.csail.mit.edu|marjoram.csail.mit.edu|perilla.csail.mit.edu|lemongrass.csail.mit.edu|clove.csail.mit.edu|curcum.csail.mit.edu|sassafras.csail.mit.edu|urfa-biber.csail.mit.edu|rosemary.csail.mit.edu|caraway.csail.mit.edu|sumac.csail.mit.edu|fennel.csail.mit.edu|rosemary.csail.mit.edu|urfa-biber.csail.mit.edu)
 
     # shared software
     export PATH="/data/vision/polina/shared_software:$PATH"
