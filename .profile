@@ -151,7 +151,7 @@ fi
 #
 # meta submit
 #
-if [[ $(hostname) == "submit-0" || $(hostname) =~ '^a100-st2-p4de24xlarge-([0-9]|[1-9][0-9])$' ]] && [[ $(uname) == Linux  ]]; then
+set_env_for_meta_machines() {
     alias github='cd /fsx/wpq/github'
     export MODULEPATH=/opt/slurm/etc/files/modulesfiles/:$MODULEPATH
     # put datasets/model in high-perf FSx fs
@@ -171,8 +171,15 @@ if [[ $(hostname) == "submit-0" || $(hostname) =~ '^a100-st2-p4de24xlarge-([0-9]
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-fi
+}
 
+
+# assume using only zsh for everything. nothing is set if using bash.
+if [[ "$0" == *zsh ]]; then
+    if [[ $(hostname) == submit-0 || $(hostname) =~ '^a100-st2-p4de24xlarge-([0-9]|[1-9][0-9])$' ]] && [[ $(uname) == Linux ]]; then
+        set_env_for_meta_machines
+    fi
+fi
 
 
 #

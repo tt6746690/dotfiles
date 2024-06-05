@@ -46,3 +46,12 @@ if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] &
 fi
 
 
+
+
+if [[ $(hostname) == submit-0 || $(hostname) =~ ^a100-st2-p4de24xlarge-([0-9]|[1-9][0-9])$ ]] && [[ $(uname) == Linux ]]; then
+    # setting shell to zsh in .profile does not work (cannot see stdout)
+    if [ "${zsh_version:-unset}" = "unset" ] && [ -z "$ZSH_VERSION"  ] ; then
+        export SHELL=/usr/bin/zsh
+        exec /usr/bin/zsh -l
+    fi
+fi
