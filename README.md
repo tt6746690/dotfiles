@@ -37,7 +37,10 @@
 5. system preference > keyboards > modifier keys
 
 
-6. Zotero [ZotFile](http://zotfile.com/)
+6. Zotero 
+
+- [ZotFile](http://zotfile.com/)
+- [Better BibTex](https://retorque.re/zotero-better-bibtex/installation/index.html)
 
 
 
