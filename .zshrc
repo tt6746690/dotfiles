@@ -86,11 +86,13 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 
-# source .profile
-[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
-
-
 # changes hex 0x15 to delete everything to the left of the cursor,
 # rather than the whole line
 bindkey "^U" backward-kill-line
 
+# enable bash compatibility mode for regex matching in zsh
+setopt BASH_REMATCH
+
+
+# source .profile
+[[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'

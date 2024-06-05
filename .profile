@@ -151,7 +151,7 @@ fi
 #
 # meta submit
 #
-if [[ $(hostname) == submit-0 || $(hostname) =~ ^a100-st2-p4de24xlarge-([0-9]|[1-9][0-9])$ ]] && [[ $(uname) == Linux  ]]; then
+if [[ $(hostname) == "submit-0" || $(hostname) =~ '^a100-st2-p4de24xlarge-([0-9]|[1-9][0-9])$' ]] && [[ $(uname) == Linux  ]]; then
     alias github='cd /fsx/wpq/github'
     export MODULEPATH=/opt/slurm/etc/files/modulesfiles/:$MODULEPATH
     # put datasets/model in high-perf FSx fs
