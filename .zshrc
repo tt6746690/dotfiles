@@ -52,7 +52,7 @@ ZSH_THEME=""
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-plugins=(git git-extras brew web-search extract themes)
+plugins=(git git-extras brew web-search extract themes zsh-autosuggestions)
 
 source $ZSH/oh-my-zsh.sh
 
