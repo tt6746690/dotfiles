@@ -154,8 +154,9 @@ fi
 set_env_for_meta_machines() {
     alias github='cd /fsx/wpq/github'
     export MODULEPATH=/opt/slurm/etc/files/modulesfiles/:$MODULEPATH
-    # put datasets/model in high-perf FSx fs
     export HF_HOME=/fsx/wpq/.cache/huggingface
+    export WANDB_DIR=/fsx/wpq/github/metasummer2024/cache
+    export WANDB_PROJECT=meta
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
