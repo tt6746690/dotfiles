@@ -1,3 +1,6 @@
+# If not running interactively, don't do anything 
+# This is to avoid issues with rsync to server that runs zsh that hangs.
+[[ "$-" != *i* ]] && return
 
 # source .profile
 if [ -f ~/.profile ]; then
@@ -44,7 +47,6 @@ if [[ "$(hostname)" == satori* || "$(hostname -f)" =~ node[0-9]{4}\.inband$ ]] &
         exec /usr/bin/zsh -l
     fi
 fi
-
 
 
 
