@@ -96,3 +96,4 @@ setopt BASH_REMATCH
 
 # source .profile
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
+
