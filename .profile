@@ -175,6 +175,10 @@ set_env_for_meta_machines() {
     # <<< conda initialize <<<
 
     function speek {
+        if [ $# -ne 1 ]; then
+            echo "Usage: speek <run_id>"
+            return 1
+        fi
         run_id=$1
         log_file="/fsx/wpq/.slurm_log/$run_id.out"
         if [ -f "$log_file" ]; then
