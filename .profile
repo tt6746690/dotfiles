@@ -157,6 +157,7 @@ set_env_for_meta_machines() {
     export HF_HOME=/fsx/wpq/.cache/huggingface
     export WANDB_DIR=/fsx/wpq/github/metasummer2024/cache
     export WANDB_PROJECT=meta
+    export OPENAI_API_KEY=$(cat /data/home/wpq/.openai_api_key)
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -172,6 +173,16 @@ set_env_for_meta_machines() {
     fi
     unset __conda_setup
     # <<< conda initialize <<<
+
+    function speek {
+        run_id=$1
+        log_file="/fsx/wpq/.slurm_log/$run_id.out"
+        if [ -f "$log_file" ]; then
+            cat "$log_file"
+        else
+            echo "$run_id finished"
+        fi
+    }
 }
 
 
