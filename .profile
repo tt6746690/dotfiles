@@ -129,7 +129,7 @@ fi
 #
 # Sandy's machine
 # 
-if [[ $(cat /etc/machine-id) == "c030daf99d5e4a739d8337011982d137" ]]; then
+if [[ -f /etc/machine-id && $(< /etc/machine-id) == "c030daf99d5e4a739d8337011982d137" ]]; then
     alias github='cd $HOME/github'
 
     # >>> conda initialize >>>
