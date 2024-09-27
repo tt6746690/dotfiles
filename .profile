@@ -84,20 +84,21 @@ if [ `uname -s` = "Darwin" ]; then
         # <<< conda initialize <<<
     fi
 
+    disk_uuid=$(diskutil info / | awk '/Volume UUID/{print $3}')
     #
-    # 2019 MacBook
+    # meta 2024 MacBook
     #
-    if [ `id -un` = "wpq" ]; then
+    if [ `id -un` = "wpq" ] && [ "$disk_uuid" = "BC940CD9-82B7-4328-8967-D01A93BBDC2D" ] ; then
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
-        __conda_setup="$('/Users/wpq/opt/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        __conda_setup="$('/Users/wpq/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
         if [ $? -eq 0 ]; then
             eval "$__conda_setup"
         else
-            if [ -f "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh" ]; then
-                . "/Users/wpq/opt/miniconda3/etc/profile.d/conda.sh"
+            if [ -f "/Users/wpq/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "/Users/wpq/miniconda3/etc/profile.d/conda.sh"
             else
-                export PATH="/Users/wpq/opt/miniconda3/bin:$PATH"
+                export PATH="/Users/wpq/miniconda3/bin:$PATH"
             fi
         fi
         unset __conda_setup
