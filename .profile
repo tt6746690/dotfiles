@@ -89,6 +89,7 @@ if [ `uname -s` = "Darwin" ]; then
     # meta 2024 MacBook
     #
     if [ `id -un` = "wpq" ] && [ "$disk_uuid" = "BC940CD9-82B7-4328-8967-D01A93BBDC2D" ] ; then
+        export OPENAI_API_KEY=$(cat /Users/wpq/.openai_api_key)
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$('/Users/wpq/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
