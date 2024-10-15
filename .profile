@@ -454,22 +454,20 @@ latem() {
 }
 
 
-
-
 function speek {
     if [[ "$1" == "-i" ]]; then
         # Handle indexing functionality
         index=$2
         # Get a list of running job IDs using squeue, filtering for running jobs
-        running_jobs=($(squeue --me -h -t R -o "%i" | sort))
-
+        running_jobs=($(squeue --me -h -o "%i" --sort=t,i))
+        
         if [[ $index -lt 0 ]]; then
             # Convert negative index to positive
             total_jobs=${#running_jobs[@]}
             index=$((total_jobs + index))
         fi
 
-        if [[ $index -ge 0 && $index -le ${#running_jobs[@]} ]]; then
+        if [[ $index -ge 1 && $index -le ${#running_jobs[@]} ]]; then
             job_id=${running_jobs[$index]}
             log_file="/fsx/wpq/.slurm_log/$job_id.out"
             if [[ -f "$log_file" ]]; then
@@ -494,5 +492,50 @@ function speek {
     else
         echo "Usage: speek <job_id> or speek -i <index>"
         return 1
+    fi
+}
+
+
+extract_tgz_and_clean() {
+    # Check if a directory path is provided
+    if [ $# -eq 0 ]; then
+        echo "Error: No directory path provided."
+        echo "Usage: extract_and_clean /path/to/directory"
+        return 1
+    fi
+
+    local directory="$1"
+    
+    # Check if the provided path is a directory
+    if [ ! -d "$directory" ]; then
+        echo "Error: '$directory' is not a valid directory."
+        return 1
+    fi
+    
+    # Change to the specified directory
+    cd "$directory" || { echo "Failed to change to directory: $directory"; return 1; }
+    
+    # Check if there are any .tgz files
+    if ! compgen -G "*.tgz" > /dev/null; then
+        echo "No .tgz files found in $directory."
+        return 0
+    fi
+
+    # Unzip all .tgz files
+    for tgz_file in *.tgz; do
+        echo "Extracting $tgz_file..."
+        if ! tar -xvf "$tgz_file"; then
+            echo "Error extracting $tgz_file"
+            extraction_success=false
+        fi
+    done
+
+    # Clean up only if all extractions were successful
+    if $extraction_success; then
+        echo "Cleaning up .tgz files..."
+        rm *.tgz
+        echo "Extraction complete and .tgz files removed in $directory."
+    else
+        echo "Some extractions failed. .tgz files were not removed."
     fi
 }
