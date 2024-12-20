@@ -162,6 +162,7 @@ set_env_for_meta_machines() {
     export WANDB_DIR=/fsx/wpq/github/metasummer2024/cache
     export WANDB_PROJECT=meta
     export OPENAI_API_KEY=$(cat /data/home/wpq/.openai_api_key)
+    export ANTHROPIC_API_KEY=$(cat /data/home/wpq/.anthropic_api_key)
 
     # >>> conda initialize >>>
     # !! Contents within this block are managed by 'conda init' !!
@@ -177,20 +178,6 @@ set_env_for_meta_machines() {
     fi
     unset __conda_setup
     # <<< conda initialize <<<
-
-    function speek {
-        if [ $# -ne 1 ]; then
-            echo "Usage: speek <run_id>"
-            return 1
-        fi
-        run_id=$1
-        log_file="/fsx/wpq/.slurm_log/$run_id.out"
-        if [ -f "$log_file" ]; then
-            cat "$log_file"
-        else
-            echo "$run_id finished"
-        fi
-    }
 }
 
 
@@ -539,3 +526,10 @@ extract_tgz_and_clean() {
         echo "Some extractions failed. .tgz files were not removed."
     fi
 }
+
+
+
+get_random_available_port() {
+    comm -23 <(seq 49152 65535 | sort) <(ss -Htan | awk '{print $4}' | awk -F: '{print $NF}' | sort -u) | shuf | head -n 1
+}
+
