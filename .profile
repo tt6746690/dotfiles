@@ -112,6 +112,11 @@ if [ `uname -s` = "Darwin" ]; then
     # mit-ibm 2023
     # 
     if [ `id -un` = "peiqiw" ]; then
+
+        export OPENAI_API_KEY=$(cat /Users/peiqiw/.openai_api_key)
+        export ANTHROPIC_API_KEY=$(cat /Users/peiqiw/.anthropic_api_key)
+        export GOOGLE_API_KEY=$(cat /users/peiqiw/.google_api_key)
+
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$('/Users/peiqiw/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
