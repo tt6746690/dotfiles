@@ -109,6 +109,33 @@ if [ `uname -s` = "Darwin" ]; then
     fi
 
     # 
+    # macbook air m4 15' 2025
+    # 
+    if [ `id -un` = "wpq" ] && [ "$disk_uuid" = "E5EE5413-CE4D-4BAD-9126-B31EF8ED6739" ] ; then
+        eval "$(/opt/homebrew/bin/brew shellenv)" # init homebrew
+        export OPENAI_API_KEY=$(cat /Users/wpq/.openai_api_key)
+        export ANTHROPIC_API_KEY=$(cat /Users/wpq/.anthropic_api_key)
+        export GOOGLE_API_KEY=$(cat /users/wpq/.google_api_key)
+
+
+        # >>> conda initialize >>>
+        # !! Contents within this block are managed by 'conda init' !!
+        __conda_setup="$('/Users/peiqiw/softwares/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+        if [ $? -eq 0 ]; then
+            eval "$__conda_setup"
+        else
+            if [ -f "/Users/wpq/softwares/miniconda3/etc/profile.d/conda.sh" ]; then
+                . "/Users/wpq/softwares/miniconda3/etc/profile.d/conda.sh"
+            else
+                export PATH="/Users/wpq/softwares/miniconda3/bin:$PATH"
+            fi
+        fi
+        unset __conda_setup
+        # <<< conda initialize <<<
+
+    fi
+
+    # 
     # mit-ibm 2023
     # 
     if [ `id -un` = "peiqiw" ]; then

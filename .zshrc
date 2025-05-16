@@ -94,6 +94,15 @@ bindkey "^U" backward-kill-line
 setopt BASH_REMATCH
 
 
+# for zsh-completions
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
+
+
 # source .profile
 [[ -e ~/.profile ]] && emulate sh -c 'source ~/.profile'
 

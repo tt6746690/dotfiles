@@ -2,7 +2,6 @@ HOME_BASE_DIR="/"
 home_files="
 .bashrc
 .gitconfig
-.macros.tex
 .profile
 .tmux.conf
 .vimrc
