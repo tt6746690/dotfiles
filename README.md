@@ -11,8 +11,8 @@
 + system preference > keyboards > modifier keys
 + Zotero 
     + [Better BibTex](https://retorque.re/zotero-better-bibtex/installation/index.html)
-    + [ZotFile](http://zotfile.com/)
-        + not compatible with Zotero 7
+    + [ZotMoov](https://github.com/wileyyugioh/zotmoov)
+        + replace Zotfile, as it's not compatible with Zotero 7
 
 
 
