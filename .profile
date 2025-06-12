@@ -159,6 +159,14 @@ if [ `uname -s` = "Darwin" ]; then
         unset __conda_setup
         # <<< conda initialize <<<
     fi
+
+    #
+    # bloomberg
+    #
+    if [ `id -un` = "pwang470" ]; then
+        source ~/.lcldevrc # setup for bootstrap-owned tools
+    fi
+
 fi
 
 
