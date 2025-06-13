@@ -165,6 +165,7 @@ if [ `uname -s` = "Darwin" ]; then
     #
     if [ `id -un` = "pwang470" ]; then
         source ~/.lcldevrc # setup for bootstrap-owned tools
+        export OPENAI_API_KEY=$(cat /Users/pwang470/.openai_api_key)
     fi
 
 fi
