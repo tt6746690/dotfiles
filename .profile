@@ -181,8 +181,25 @@ if [ `uname -s` = "Darwin" ]; then
         fi
         unset __conda_setup
         # <<< conda initialize <<<
-    fi
+        
+        # set spaces remote
+        # 1) copy paste `ssh pwang470-701c66.spaces -p 49719` from Spaces
+        # 2) run `set_space_remote`. This function will set `SPACE_REMOTE` to `pwang470-701c66.spaces`
+        function set_space_remote() {
+            # grab the SSH line straight from the macOS clipboard
+            local input
+            input="$(pbpaste)"
 
+            # sanity check
+            if [[ ! $input =~ ^ssh\  ]]; then
+                echo "Error: clipboard does not start with 'ssh'" >&2
+                return 1
+            fi
+
+            # extract and export the host (2nd field)
+            export SPACE_REMOTE="$(awk '{print $2}' <<< "$input")"
+        }
+    fi
 fi
 
 
