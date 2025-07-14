@@ -184,31 +184,27 @@ if [ `uname -s` = "Darwin" ]; then
         
 
         set_space_credentials() {
-            # 1) Prompt for the SSH command and extract the remote host
+            # 1) Prompt for the SSH command
             printf "Enter SSH command (e.g. ssh pwang470-701c66.spaces -p 49719): "
-            read ssh_cmd
-            export SPACE_REMOTE=$(echo "$ssh_cmd" | awk '{print $2}')
+            IFS= read -r ssh_cmd
+            SPACE_REMOTE=$(awk '{print $2}' <<<"$ssh_cmd")
 
-            # 2) Push AWS secret from clipboard
-            printf "Copy your AWS Secret Access Key to the clipboard, then press [Enter] to continue..."
-            read  # wait for Enter
-            pbpaste | ssh "$SPACE_REMOTE" '
-                umask 077
-                cat > ~/.aws_secret_access_key
-                chmod 600 ~/.aws_secret_access_key
-            '
-            echo "✅ AWS secret deployed."
+            # 2) Push AWS secret
+            printf "Enter AWS Secret Access Key: "
+            IFS= read -r aws_secret
+            ssh "$SPACE_REMOTE" \
+                "umask 077; cat > ~/.aws_secret_access_key; chmod 600 ~/.aws_secret_access_key" \
+                <<<"$aws_secret" \
+                && echo "✅ AWS secret deployed."
 
-            # 3) Push llm-client password from clipboard
-            printf "Now copy your llm-client password to the clipboard, then press [Enter] to continue..."
-            read  # wait for Enter
-            pbpaste | ssh "$SPACE_REMOTE" '
-                umask 077
-                cat > ~/.llm_role_pwd
-                chmod 600 ~/.llm_role_pwd
-            '
-            echo "✅ llm-client password deployed."
-        }
+            # 3) Push llm-client password
+            printf "Enter llm-client password: "
+            IFS= read -r llm_client_password
+            ssh "$SPACE_REMOTE" \
+                "umask 077; cat > ~/.llm_role_pwd; chmod 600 ~/.llm_role_pwd" \
+                <<<"$llm_client_password" \
+                && echo "✅ llm-client password deployed."
+            }
 
     fi
 fi
