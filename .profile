@@ -182,23 +182,34 @@ if [ `uname -s` = "Darwin" ]; then
         unset __conda_setup
         # <<< conda initialize <<<
         
-        # set spaces remote
-        # 1) copy paste `ssh pwang470-701c66.spaces -p 49719` from Spaces
-        # 2) run `set_space_remote`. This function will set `SPACE_REMOTE` to `pwang470-701c66.spaces`
-        function set_space_remote() {
-            # grab the SSH line straight from the macOS clipboard
-            local input
-            input="$(pbpaste)"
 
-            # sanity check
-            if [[ ! $input =~ ^ssh\  ]]; then
-                echo "Error: clipboard does not start with 'ssh'" >&2
-                return 1
-            fi
+        set_space_credentials() {
+            # 1) Prompt for the SSH command and extract the remote host
+            printf "Enter SSH command (e.g. ssh pwang470-701c66.spaces -p 49719): "
+            read ssh_cmd
+            export SPACE_REMOTE=$(echo "$ssh_cmd" | awk '{print $2}')
 
-            # extract and export the host (2nd field)
-            export SPACE_REMOTE="$(awk '{print $2}' <<< "$input")"
+            # 2) Push AWS secret from clipboard
+            printf "Copy your AWS Secret Access Key to the clipboard, then press [Enter] to continue..."
+            read  # wait for Enter
+            pbpaste | ssh "$SPACE_REMOTE" '
+                umask 077
+                cat > ~/.aws_secret_access_key
+                chmod 600 ~/.aws_secret_access_key
+            '
+            echo "✅ AWS secret deployed."
+
+            # 3) Push llm-client password from clipboard
+            printf "Now copy your llm-client password to the clipboard, then press [Enter] to continue..."
+            read  # wait for Enter
+            pbpaste | ssh "$SPACE_REMOTE" '
+                umask 077
+                cat > ~/.llm_role_pwd
+                chmod 600 ~/.llm_role_pwd
+            '
+            echo "✅ llm-client password deployed."
         }
+
     fi
 fi
 
