@@ -1,7 +1,9 @@
 
 
 
-setup according to https://chatgpt.com/share/687bcec8-f758-8013-a54e-f556052b732b
+follow instruction: https://github.com/harryhare/1point3acres?tab=readme-ov-file
+get api key (5 usd for 300 days): https://2captcha.com/enterpage
+setup daily update according to https://chatgpt.com/share/687bcec8-f758-8013-a54e-f556052b732b
 
 ```sh
 # setup
