@@ -1,7 +1,7 @@
 
 
 
-
+setup according to https://chatgpt.com/share/687bcec8-f758-8013-a54e-f556052b732b
 
 ```sh
 # setup
