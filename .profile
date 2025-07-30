@@ -206,7 +206,6 @@ if [ `uname -s` = "Darwin" ]; then
         }
 
         push_space_creds() {
-            # https://chatgpt.com/share/e/688a6e25-de74-8007-9d5b-cd8365f00806
             printf "Enter SSH command (e.g. ssh user@host -p 2222): "
             read -r ssh_cmd
             remote=$(awk '{print $2}' <<<"$ssh_cmd")
