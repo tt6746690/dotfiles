@@ -182,7 +182,6 @@ if [ `uname -s` = "Darwin" ]; then
         unset __conda_setup
         # <<< conda initialize <<<
         
-
         set_space_credentials() {
             # 1) Prompt for the SSH command
             printf "Enter SSH command (e.g. ssh pwang470-701c66.spaces -p 49719): "
@@ -204,7 +203,16 @@ if [ `uname -s` = "Darwin" ]; then
                 "umask 077; cat > ~/.llm_role_pwd; chmod 600 ~/.llm_role_pwd" \
                 <<<"$llm_client_password" \
                 && echo "✅ llm-client password deployed."
-            }
+        }
+
+        push_space_creds() {
+            # https://chatgpt.com/share/e/688a6e25-de74-8007-9d5b-cd8365f00806
+            printf "Enter SSH command (e.g. ssh user@host -p 2222): "
+            read -r ssh_cmd
+            remote=$(awk '{print $2}' <<<"$ssh_cmd")
+            rsync -av ~/.space_credentials/ "$remote":~/.space_credentials/
+            echo "✅ Deployed ~/.space_credentials to $remote:~/.space_credentials"
+        }
 
     fi
 fi
