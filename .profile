@@ -622,63 +622,153 @@ get_random_available_port() {
 }
 
 
+marker_pdf_to_md() {
+    local input_file="$1" output_file="$2"
+    
+    [[ -z "$input_file" || -z "$output_file" ]] && {
+        echo "Usage: marker_pdf_to_md <input_pdf> <output_markdown_file>"
+        return 1
+    }
+    
+    local output_dir=$(dirname "$output_file")
+    local input_basename=$(basename "$input_file" .pdf)
+    local temp_dir=$(mktemp -d)
+    
+    echo "🔄 Processing: $input_file"
+    
+    # Run marker_single
+    TORCH_DEVICE=cpu marker_single \
+        --output_dir "$temp_dir" \
+        --output_format markdown \
+        --use_llm \
+        --debug \
+        "$input_file" || {
+        echo "⚠️ marker_single failed"
+        rm -rf "$temp_dir"
+        return 1
+    }
+    
+    # Find generated markdown file
+    local temp_md_file=$(find "$temp_dir" -name "*.md" | head -n 1)
+    [[ -z "$temp_md_file" ]] && {
+        echo "⚠️ No markdown file found in output"
+        rm -rf "$temp_dir"
+        return 1
+    }
+    
+    # Copy markdown to final location
+    mkdir -p "$output_dir"
+    cp "$temp_md_file" "$output_file"
+    
+    # Process images only if they exist
+    local image_files=$(find "$temp_dir" -name "*_page_*_Picture_*" $-name "*.jpeg" -o -name "*.jpg" -o -name "*.png"$)
+    
+    if [[ -n "$image_files" ]]; then
+        local attachments_dir="$output_dir/attachments"
+        mkdir -p "$attachments_dir"
+        
+        while IFS= read -r image_path; do
+            [[ ! -f "$image_path" ]] && continue
+            
+            local image_name=$(basename "$image_path")
+            local new_image_name="${input_basename}_${image_name}"
+            
+            # Copy image and update markdown references
+            cp "$image_path" "$attachments_dir/$new_image_name"
+            
+            # Update markdown image references (fixed patterns)
+            sed -i.bak \
+                -e "s|!$$($image_name)|![](attachments/$new_image_name)|g" \
+                -e "s|!$[^]]*$($image_name)|![](attachments/$new_image_name)|g" \
+                -e "s|$image_name|attachments/$new_image_name|g" \
+                "$output_file"
+                
+        done <<< "$image_files"
+        
+        rm -f "$output_file.bak"
+        echo "📎 Processed $(echo "$image_files" | wc -l) images"
+    fi
+    
+    # Cleanup
+    local cleanup_dir="/tmp/marker_cleanup_$(date +%s)"
+    mkdir -p "$cleanup_dir"
+    find "$temp_dir" -type f -exec mv {} "$cleanup_dir/" \; 2>/dev/null
+    rm -rf "$temp_dir"
+    
+    echo "✅ Conversion complete: $output_file"
+}
 
-#!/bin/bash
 
 # A function to recursively find and convert PDFs to Markdown,
 # preserving the directory structure.
 #
 # Usage: convert_pdfs_to_md <source_dir> [destination_dir]
+# Options:
+#   -j, --jobs N    Number of parallel jobs (default: 4)
+#   -f, --force     Force reconversion of existing files
+#
+# Required setup for marker: requires downloading models, higher quality but slower
+# conda create -n pdf-to-md python=3.12
+# conda activate pdf-to-md
+# pip install marker-pdf pandoc
+# 
+convert_pdfs_to_md_parallel() {
+    local max_jobs=1 force=false source_dir="" dest_dir=""
+    
+    # Parse options
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -j|--jobs) max_jobs="$2"; shift 2 ;;
+            -f|--force) force=true; shift ;;
+            -*) echo "🔴 Unknown option: $1"; return 1 ;;
+            *) 
+                if [[ -z "$source_dir" ]]; then
+                    source_dir="${1%/}"
+                elif [[ -z "$dest_dir" ]]; then
+                    dest_dir="${1%/}"
+                else
+                    echo "🔴 Too many arguments"; return 1
+                fi
+                shift ;;
+        esac
+    done
+    
+    [[ -z "$source_dir" ]] && { echo "🔴 Usage: convert_pdfs_to_md_parallel [-j N] [-f] <source_dir> [dest_dir]"; return 1; }
+    [[ -z "$dest_dir" ]] && dest_dir="${source_dir}_md"
+    [[ ! -d "$source_dir" ]] && { echo "🔴 Error: Source directory '$source_dir' does not exist."; return 1; }
 
-convert_pdfs_to_md() {
-    # --- 1. Validate and set paths ---
-    if [ "$#" -eq 0 ] || [ "$#" -gt 2 ]; then
-    echo "🔴 Usage: $0 <source_directory> [destination_directory]"
-        return 1
-    fi
-
-    local source_dir="${1%/}" # Remove trailing slash, if any
-    local dest_dir
-
-    if [ -n "$2" ]; then
-        # Use the second argument as the destination directory
-        dest_dir="${2%/}"
-    else
-        # If no second argument, append "_md" to the source directory name
-        dest_dir="${source_dir}_md"
-    fi
-
-    if [ ! -d "$source_dir" ]; then
-        echo "🔴 Error: Source directory '$source_dir' does not exist."
-        return 1
-    fi
-
-    # --- 2. Find, loop, and convert ---
-    echo "🔍 Starting conversion..."
+    echo "🔍 Starting parallel conversion with $max_jobs jobs..."
     echo "   Source:      $source_dir"
     echo "   Destination: $dest_dir"
+    echo "   Force:       $force"
 
-    find "$source_dir" -type f -name "*.pdf" -print0 | while IFS= read -r -d '' pdf_file; do
-
-        # Define paths for the new markdown file
-        local relative_path="${pdf_file#$source_dir/}"
-        local dest_md_file="$dest_dir/${relative_path%.pdf}.md"
-        local dest_md_dir=$(dirname "$dest_md_file")
-
-        # Create the destination sub-directory if it doesn't exist
-        mkdir -p "$dest_md_dir"
-
-        # Announce and convert using pandoc
-        echo "🔄 Converting: $pdf_file"
-        pandoc "$pdf_file" -o "$dest_md_file"
-
-        # Check the conversion status
-        if [ $? -eq 0 ]; then
-            echo "✅      Saved: $dest_md_file"
-        else
-            echo "⚠️   Failed to convert: $pdf_file"
-        fi
-    done
-
+    find "$source_dir" -type f -name "*.pdf" -print0 | \
+        xargs -0 -n 1 -P "$max_jobs" -I {} bash -c '
+            source ~/.profile && conda activate pdf-to-md
+            
+            pdf_file="$1"
+            source_dir="$2" 
+            dest_dir="$3"
+            force="$4"
+            
+            relative_path="${pdf_file#$source_dir/}"
+            dest_md_file="$dest_dir/${relative_path%.pdf}.md"
+            
+            # Skip if file exists and not forcing
+            if [[ -f "$dest_md_file" && "$force" != "true" ]]; then
+                echo "⏭️  Skipping: $pdf_file (already exists)"
+                exit 0
+            fi
+            
+            mkdir -p "$(dirname "$dest_md_file")"
+            
+            echo "🔄 Converting: $pdf_file"
+            if marker_pdf_to_md "$pdf_file" "$dest_md_file"; then
+                echo "✅      Saved: $dest_md_file"
+            else
+                echo "⚠️   Failed to convert: $pdf_file"
+            fi
+        ' _ {} "$source_dir" "$dest_dir" "$force"
+    
     echo "✨ Conversion complete!"
 }
