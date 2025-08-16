@@ -108,15 +108,16 @@ if [ `uname -s` = "Darwin" ]; then
         # <<< conda initialize <<<
     fi
 
+    platform_uuid="$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F'"' '/IOPlatformUUID/ {print $4}')"
+
     # 
     # macbook air m4 15' 2025
     # 
-    if [ `id -un` = "wpq" ] && [ "$disk_uuid" = "E5EE5413-CE4D-4BAD-9126-B31EF8ED6739" ] ; then
+    if [ `id -un` = "wpq" ] && [ "$platform_uuid" = "68CB70C0-668A-5193-BD0B-A9D6DFFE9BEA" ] ; then
         eval "$(/opt/homebrew/bin/brew shellenv)" # init homebrew
         export OPENAI_API_KEY=$(cat /Users/wpq/.openai_api_key)
         export ANTHROPIC_API_KEY=$(cat /Users/wpq/.anthropic_api_key)
         export GOOGLE_API_KEY=$(cat /users/wpq/.google_api_key)
-
 
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
@@ -620,3 +621,64 @@ get_random_available_port() {
     comm -23 <(seq 49152 65535 | sort) <(ss -Htan | awk '{print $4}' | awk -F: '{print $NF}' | sort -u) | shuf | head -n 1
 }
 
+
+
+#!/bin/bash
+
+# A function to recursively find and convert PDFs to Markdown,
+# preserving the directory structure.
+#
+# Usage: convert_pdfs_to_md <source_dir> [destination_dir]
+
+convert_pdfs_to_md() {
+    # --- 1. Validate and set paths ---
+    if [ "$#" -eq 0 ] || [ "$#" -gt 2 ]; then
+    echo "🔴 Usage: $0 <source_directory> [destination_directory]"
+        return 1
+    fi
+
+    local source_dir="${1%/}" # Remove trailing slash, if any
+    local dest_dir
+
+    if [ -n "$2" ]; then
+        # Use the second argument as the destination directory
+        dest_dir="${2%/}"
+    else
+        # If no second argument, append "_md" to the source directory name
+        dest_dir="${source_dir}_md"
+    fi
+
+    if [ ! -d "$source_dir" ]; then
+        echo "🔴 Error: Source directory '$source_dir' does not exist."
+        return 1
+    fi
+
+    # --- 2. Find, loop, and convert ---
+    echo "🔍 Starting conversion..."
+    echo "   Source:      $source_dir"
+    echo "   Destination: $dest_dir"
+
+    find "$source_dir" -type f -name "*.pdf" -print0 | while IFS= read -r -d '' pdf_file; do
+
+        # Define paths for the new markdown file
+        local relative_path="${pdf_file#$source_dir/}"
+        local dest_md_file="$dest_dir/${relative_path%.pdf}.md"
+        local dest_md_dir=$(dirname "$dest_md_file")
+
+        # Create the destination sub-directory if it doesn't exist
+        mkdir -p "$dest_md_dir"
+
+        # Announce and convert using pandoc
+        echo "🔄 Converting: $pdf_file"
+        pandoc "$pdf_file" -o "$dest_md_file"
+
+        # Check the conversion status
+        if [ $? -eq 0 ]; then
+            echo "✅      Saved: $dest_md_file"
+        else
+            echo "⚠️   Failed to convert: $pdf_file"
+        fi
+    done
+
+    echo "✨ Conversion complete!"
+}
