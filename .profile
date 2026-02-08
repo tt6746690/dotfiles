@@ -119,6 +119,10 @@ if [ `uname -s` = "Darwin" ]; then
         export ANTHROPIC_API_KEY=$(cat /Users/wpq/.anthropic_api_key)
         export GOOGLE_API_KEY=$(cat /users/wpq/.google_api_key)
 
+        export KALSHI_API_KEY=$(cat /Users/wpq/.kalshi_api_key)
+
+         # >>> conda initialize >>>
+
         # >>> conda initialize >>>
         # !! Contents within this block are managed by 'conda init' !!
         __conda_setup="$('/Users/peiqiw/softwares/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
