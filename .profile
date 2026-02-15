@@ -118,6 +118,7 @@ if [ `uname -s` = "Darwin" ]; then
         export OPENAI_API_KEY=$(cat /Users/wpq/.openai_api_key)
         export ANTHROPIC_API_KEY=$(cat /Users/wpq/.anthropic_api_key)
         export GOOGLE_API_KEY=$(cat /users/wpq/.google_api_key)
+        export PYPI_API_KEY=$(cat /users/wpq/.pypi_api_key)
 
         alias wm='worktree-mux'
 
