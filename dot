@@ -5,6 +5,7 @@ home_files="
 .bashrc
 .gitconfig
 .profile
+.profile_fn
 .tmux.conf
 .vimrc
 .zshrc
@@ -14,6 +15,23 @@ home_files="
 NVIM_BASE_CONFIG_DIR=".config/nvim"
 nvim_files="
 init.vim
+"
+
+PROFILE_D_DIR=".profile.d"
+profile_d_files="
+_common.sh
+_conda.sh
+macos-2015-markwang.sh
+macos-2023-peiqiw.sh
+macos-2024-meta-wpq.sh
+macos-2025-wpq.sh
+macos-2025-bloomberg-pwang470.sh
+linux-2020-csail.sh
+linux-2020-satori.sh
+linux-2023-aimos.sh
+linux-2023-ccc.sh
+linux-2024-meta.sh
+linux-2024-sandy.sh
 "
 
 
@@ -52,6 +70,7 @@ dotsync(){
 transfer(){
     dotsync $HOME_BASE_DIR $home_files
     dotsync $NVIM_BASE_CONFIG_DIR $nvim_files
+    dotsync $PROFILE_D_DIR $profile_d_files
 }
 
 update(){

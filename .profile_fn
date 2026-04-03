@@ -1,0 +1,275 @@
+# Bash functions library
+# Sourced from .profile
+
+# makes a new latex template with specified filename and populate body with stdio, if exists
+latem() {
+    # determine filename from cml
+    if [ -z "$1" ]
+    then
+        latex_filename="template"
+    else
+        latex_filename="$1"
+    fi
+
+    # create new latex template if not exist
+    if [ ! -f "$latex_filename.tex" ]
+    then
+        {
+            echo "\documentclass[11pt]{article}"
+            echo "\input{\string~/.preamble}"
+            echo
+            echo \\\\begin{document}
+            for i in {1..10}
+            do
+                echo
+            done
+            echo \\\\end{document}
+
+        } > "$latex_filename.tex"
+    fi
+}
+
+
+function speek {
+    if [[ "$1" == "-i" ]]; then
+        # Handle indexing functionality
+        index=$2
+        # Get a list of running job IDs using squeue, filtering for running jobs
+        running_jobs=($(squeue --me -h -o "%i" --sort=t,i))
+
+        if [[ $index -lt 0 ]]; then
+            # Convert negative index to positive
+            total_jobs=${#running_jobs[@]}
+            index=$((total_jobs + index))
+        fi
+
+        if [[ $index -ge 1 && $index -le ${#running_jobs[@]} ]]; then
+            job_id=${running_jobs[$index]}
+            log_file="/fsx/wpq/.slurm_log/$job_id.out"
+            if [[ -f "$log_file" ]]; then
+                cat "$log_file"
+                echo
+                echo "speek $job_id"
+            else
+                echo "Log file $log_file for job $job_id does not exist."
+            fi
+        else
+            echo "Index out of range"
+            return 1
+        fi
+    elif [[ $# -eq 1 ]]; then
+        job_id=$1
+        log_file="/fsx/wpq/.slurm_log/$job_id.out"
+        if [[ -f "$log_file" ]]; then
+            cat "$log_file"
+        else
+            echo "$job_id finished or log file does not exist."
+        fi
+    else
+        echo "Usage: speek <job_id> or speek -i <index>"
+        return 1
+    fi
+}
+
+
+extract_tgz_and_clean() {
+    # Check if a directory path is provided
+    if [ $# -eq 0 ]; then
+        echo "Error: No directory path provided."
+        echo "Usage: extract_and_clean /path/to/directory"
+        return 1
+    fi
+
+    local directory="$1"
+
+    # Check if the provided path is a directory
+    if [ ! -d "$directory" ]; then
+        echo "Error: '$directory' is not a valid directory."
+        return 1
+    fi
+
+    # Change to the specified directory
+    cd "$directory" || { echo "Failed to change to directory: $directory"; return 1; }
+
+    # Check if there are any .tgz files
+    if ! compgen -G "*.tgz" > /dev/null; then
+        echo "No .tgz files found in $directory."
+        return 0
+    fi
+
+    # Unzip all .tgz files
+    for tgz_file in *.tgz; do
+        echo "Extracting $tgz_file..."
+        if ! tar -xvf "$tgz_file"; then
+            echo "Error extracting $tgz_file"
+            extraction_success=false
+        fi
+    done
+
+    # Clean up only if all extractions were successful
+    if $extraction_success; then
+        echo "Cleaning up .tgz files..."
+        rm *.tgz
+        echo "Extraction complete and .tgz files removed in $directory."
+    else
+        echo "Some extractions failed. .tgz files were not removed."
+    fi
+}
+
+
+
+get_random_available_port() {
+    comm -23 <(seq 49152 65535 | sort) <(ss -Htan | awk '{print $4}' | awk -F: '{print $NF}' | sort -u) | shuf | head -n 1
+}
+
+
+marker_pdf_to_md() {
+    local input_file="$1" output_file="$2"
+
+    [[ -z "$input_file" || -z "$output_file" ]] && {
+        echo "Usage: marker_pdf_to_md <input_pdf> <output_markdown_file>"
+        return 1
+    }
+
+    local output_dir=$(dirname "$output_file")
+    local input_basename=$(basename "$input_file" .pdf)
+    local temp_dir=$(mktemp -d)
+
+    echo "🔄 Processing: $input_file"
+
+    # Run marker_single
+    TORCH_DEVICE=cpu marker_single \
+        --output_dir "$temp_dir" \
+        --output_format markdown \
+        --use_llm \
+        --debug \
+        "$input_file" || {
+        echo "⚠️ marker_single failed"
+        rm -rf "$temp_dir"
+        return 1
+    }
+
+    # Find generated markdown file
+    local temp_md_file=$(find "$temp_dir" -name "*.md" | head -n 1)
+    [[ -z "$temp_md_file" ]] && {
+        echo "⚠️ No markdown file found in output"
+        rm -rf "$temp_dir"
+        return 1
+    }
+
+    # Copy markdown to final location
+    mkdir -p "$output_dir"
+    cp "$temp_md_file" "$output_file"
+
+    # Process images only if they exist
+    local image_files=$(find "$temp_dir" -name "*_page_*_Picture_*" $-name "*.jpeg" -o -name "*.jpg" -o -name "*.png"$)
+
+    if [[ -n "$image_files" ]]; then
+        local attachments_dir="$output_dir/attachments"
+        mkdir -p "$attachments_dir"
+
+        while IFS= read -r image_path; do
+            [[ ! -f "$image_path" ]] && continue
+
+            local image_name=$(basename "$image_path")
+            local new_image_name="${input_basename}_${image_name}"
+
+            # Copy image and update markdown references
+            cp "$image_path" "$attachments_dir/$new_image_name"
+
+            # Update markdown image references (fixed patterns)
+            sed -i.bak \
+                -e "s|!$$($image_name)|![](attachments/$new_image_name)|g" \
+                -e "s|!$[^]]*$($image_name)|![](attachments/$new_image_name)|g" \
+                -e "s|$image_name|attachments/$new_image_name|g" \
+                "$output_file"
+
+        done <<< "$image_files"
+
+        rm -f "$output_file.bak"
+        echo "📎 Processed $(echo "$image_files" | wc -l) images"
+    fi
+
+    # Cleanup
+    local cleanup_dir="/tmp/marker_cleanup_$(date +%s)"
+    mkdir -p "$cleanup_dir"
+    find "$temp_dir" -type f -exec mv {} "$cleanup_dir/" \; 2>/dev/null
+    rm -rf "$temp_dir"
+
+    echo "✅ Conversion complete: $output_file"
+}
+
+
+# A function to recursively find and convert PDFs to Markdown,
+# preserving the directory structure.
+#
+# Usage: convert_pdfs_to_md <source_dir> [destination_dir]
+# Options:
+#   -j, --jobs N    Number of parallel jobs (default: 4)
+#   -f, --force     Force reconversion of existing files
+#
+# Required setup for marker: requires downloading models, higher quality but slower
+# conda create -n pdf-to-md python=3.12
+# conda activate pdf-to-md
+# pip install marker-pdf pandoc
+#
+convert_pdfs_to_md_parallel() {
+    local max_jobs=1 force=false source_dir="" dest_dir=""
+
+    # Parse options
+    while [[ $# -gt 0 ]]; do
+        case $1 in
+            -j|--jobs) max_jobs="$2"; shift 2 ;;
+            -f|--force) force=true; shift ;;
+            -*) echo "🔴 Unknown option: $1"; return 1 ;;
+            *)
+                if [[ -z "$source_dir" ]]; then
+                    source_dir="${1%/}"
+                elif [[ -z "$dest_dir" ]]; then
+                    dest_dir="${1%/}"
+                else
+                    echo "🔴 Too many arguments"; return 1
+                fi
+                shift ;;
+        esac
+    done
+
+    [[ -z "$source_dir" ]] && { echo "🔴 Usage: convert_pdfs_to_md_parallel [-j N] [-f] <source_dir> [dest_dir]"; return 1; }
+    [[ -z "$dest_dir" ]] && dest_dir="${source_dir}_md"
+    [[ ! -d "$source_dir" ]] && { echo "🔴 Error: Source directory '$source_dir' does not exist."; return 1; }
+
+    echo "🔍 Starting parallel conversion with $max_jobs jobs..."
+    echo "   Source:      $source_dir"
+    echo "   Destination: $dest_dir"
+    echo "   Force:       $force"
+
+    find "$source_dir" -type f -name "*.pdf" -print0 | \
+        xargs -0 -n 1 -P "$max_jobs" -I {} bash -c '
+            source ~/.profile && conda activate pdf-to-md
+
+            pdf_file="$1"
+            source_dir="$2"
+            dest_dir="$3"
+            force="$4"
+
+            relative_path="${pdf_file#$source_dir/}"
+            dest_md_file="$dest_dir/${relative_path%.pdf}.md"
+
+            # Skip if file exists and not forcing
+            if [[ -f "$dest_md_file" && "$force" != "true" ]]; then
+                echo "⏭️  Skipping: $pdf_file (already exists)"
+                exit 0
+            fi
+
+            mkdir -p "$(dirname "$dest_md_file")"
+
+            echo "🔄 Converting: $pdf_file"
+            if marker_pdf_to_md "$pdf_file" "$dest_md_file"; then
+                echo "✅      Saved: $dest_md_file"
+            else
+                echo "⚠️   Failed to convert: $pdf_file"
+            fi
+        ' _ {} "$source_dir" "$dest_dir" "$force"
+
+    echo "✨ Conversion complete!"
+}
