@@ -35,7 +35,7 @@ setup-linux.sh    # install tools (zsh, vim, tmux)
 
 Clean up backup files after verifying install:
 ```sh
-rm -f ~/.{bashrc,condarc,gitconfig,profile,profile_fn,tmux.conf,vimrc,zshrc}.bak ~/.config/nvim/init.vim.bak
+rm -f ~/.{bashrc,condarc,gitconfig,profile,profile_fn,tmux.conf,vimrc,zshrc}.bak ~/.config/nvim/init.vim.bak ~/.profile.d/*.bak
 ```
 
 ### macOS setup notes
