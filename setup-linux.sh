@@ -3,7 +3,6 @@
 #   - zsh + oh-my-zsh + zsh-autosuggestions
 #   - vim + Vundle + plugins
 #   - tmux + tpm (tmux plugin manager)
-#   - dotfiles (via ./dot install)
 # Idempotent: skips anything already installed.
 set -euo pipefail
 
@@ -66,8 +65,5 @@ else
     git clone https://github.com/tmux-plugins/tpm "$HOME/.tmux/plugins/tpm"
 fi
 
-# dotfiles
-echo "[run] install dotfiles"
-"$(dirname "$0")/dot" install
-
 echo "=== done ==="
+echo "Run ./dot install to deploy dotfiles"
