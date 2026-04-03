@@ -35,4 +35,4 @@
   untracked = cyan
   
 [credential]
-	helper = store
+	helper = osxkeychain
