@@ -1,4 +1,10 @@
 #!/bin/bash
+# Linux setup script (yum-based). Installs:
+#   - zsh + oh-my-zsh + zsh-autosuggestions
+#   - vim + Vundle + plugins
+#   - tmux + tpm (tmux plugin manager)
+#   - dotfiles (via ./dot install)
+# Idempotent: skips anything already installed.
 set -euo pipefail
 
 echo "=== Linux setup ==="

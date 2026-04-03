@@ -1,4 +1,11 @@
 #!/bin/bash
+# macOS setup script. Installs:
+#   - Homebrew
+#   - zsh + oh-my-zsh + zsh-autosuggestions
+#   - vim + Vundle + plugins
+#   - tmux + tpm (tmux plugin manager) + reattach-to-user-namespace
+#   - dotfiles (via ./dot install)
+# Idempotent: skips anything already installed.
 set -euo pipefail
 
 echo "=== macOS setup ==="
