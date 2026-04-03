@@ -1,3 +1,5 @@
+set -euo pipefail
+
 HOME_BASE_DIR="/"
 home_files="
 .bashrc
@@ -25,18 +27,22 @@ dotsync(){
     for f in "$@"
     do
 
-        if [ $flag = "update" ]; then 
+        if [ "$flag" = "update" ]; then
             src="$HOME/$base/$f"
             dest="./$base/$f"
-        elif [ $flag = "install" ]; then 
+        elif [ "$flag" = "install" ]; then
             src="./$base/$f"
             dest="$HOME/$base/$f"
         fi
-        if [ -e $src ]; then
+        if [ -e "$src" ]; then
+            # backup existing file before overwriting on install
+            if [ "$flag" = "install" ] && [ -e "$dest" ]; then
+                cp "$dest" "${dest}.bak"
+            fi
             echo Copy over $f
-            mkdir -p `dirname $dest` && cp $src $dest
+            mkdir -p "$(dirname "$dest")" && cp "$src" "$dest"
         else
-            echo $src not found
+            echo "$src not found"
         fi
     done
     echo Copy finished...
