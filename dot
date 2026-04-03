@@ -18,21 +18,6 @@ init.vim
 "
 
 PROFILE_D_DIR=".profile.d"
-profile_d_files="
-_common.sh
-_conda.sh
-macos-2015-markwang.sh
-macos-2023-peiqiw.sh
-macos-2024-meta-wpq.sh
-macos-2025-wpq.sh
-macos-2025-bloomberg-pwang470.sh
-linux-2020-csail.sh
-linux-2020-satori.sh
-linux-2023-aimos.sh
-linux-2023-ccc.sh
-linux-2024-meta.sh
-linux-2024-sandy.sh
-"
 
 
 dotsync(){
@@ -67,10 +52,33 @@ dotsync(){
 }
 
 
+sync_dir(){
+    # sync all files in a directory (non-recursive)
+    local dir="$1"
+    if [ "$flag" = "update" ]; then
+        src_dir="$HOME/$dir"
+        dest_dir="./$dir"
+    elif [ "$flag" = "install" ]; then
+        src_dir="./$dir"
+        dest_dir="$HOME/$dir"
+    fi
+    mkdir -p "$dest_dir"
+    for src in "$src_dir"/*; do
+        [ -f "$src" ] || continue
+        local fname="$(basename "$src")"
+        local dest="$dest_dir/$fname"
+        if [ "$flag" = "install" ] && [ -e "$dest" ]; then
+            cp "$dest" "${dest}.bak"
+        fi
+        echo "Copy over $dir/$fname"
+        cp "$src" "$dest"
+    done
+}
+
 transfer(){
     dotsync $HOME_BASE_DIR $home_files
     dotsync $NVIM_BASE_CONFIG_DIR $nvim_files
-    dotsync $PROFILE_D_DIR $profile_d_files
+    sync_dir $PROFILE_D_DIR
 }
 
 update(){
