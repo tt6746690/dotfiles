@@ -30,7 +30,12 @@ setup-linux.sh    # install tools (zsh, vim, tmux)
 
 ```sh
 ./dot update    # copy dotfiles from ~ into repo, commit, push
-./dot install   # pull repo, copy dotfiles into ~
+./dot install   # pull repo, copy dotfiles into ~ (creates .bak backups)
+```
+
+Clean up backup files after verifying install:
+```sh
+rm -f ~/.{bashrc,condarc,gitconfig,profile,profile_fn,tmux.conf,vimrc,zshrc}.bak ~/.config/nvim/init.vim.bak
 ```
 
 ### macOS setup notes
