@@ -9,29 +9,7 @@ if [ "$(uname -s)" = "Darwin" ]; then
 
     # macOS-only aliases
     alias open='reattach-to-user-namespace open'
-    alias duck='du -sh * | gsort -hr'
-    alias stat='stat -x'
-    alias tkt='kinit wpq@CSAIL.MIT.EDU'
     alias github='cd $HOME/github'
-    alias stash='cd $HOME/Dropbox\ \(MIT\)/School/2021.2022'
-
-    # ssh aliases
-    alias cdf='ssh -Y wangpeiq@teach.cs.utoronto.ca'
-    alias cdfsql='ssh wangpeiq@dbsrv1.teach.cs.toronto.edu'
-    alias sickkids='ssh wangpeiq@hpf.ccm.sickkids.ca'
-    alias page='ssh wangpeiq@page.ccm.sickkids.ca'
-    alias dcs='ssh wpq@cs.toronto.edu'
-    alias alice='ssh mark@192.168.184.236'  # on mars-tenant only
-    alias shresh='ssh mark@192.168.184.25'  # on mars-tenant only
-    alias cpu1='ssh mark.wang@cpu1.dg'
-    alias comps0='ssh wpq@comps0.cs.toronto.edu'
-    alias compslurm='ssh wpq@$scheduler.cs.toronto.edu'
-    alias scinet='ssh -Y csc367student028@teach.scinet.utoronto.ca'
-    alias zeus='ssh wpq@zeus.dgp.toronto.edu'
-    alias cumin='ssh -X wpq@cumin.csail.mit.edu'
-    alias quassia='ssh -X wpq@quassia.csail.mit.edu'
-    alias chili='ssh -X wpq@chili.csail.mit.edu'
-    alias athena='ssh athena.dialup.mit.edu'
 
     # machine detection
     platform_uuid="$(ioreg -rd1 -c IOPlatformExpertDevice | awk -F'"' '/IOPlatformUUID/ {print $4}')"

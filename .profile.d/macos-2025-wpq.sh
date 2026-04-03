@@ -9,3 +9,5 @@ export PYPI_API_KEY=$(cat ~/.pypi_api_key)
 alias wm='worktree-mux'
 
 init_conda "/Users/wpq/softwares/miniconda3" "zsh"
+
+init_conda "/Users/wpq/softwares/miniconda3" "zsh"
