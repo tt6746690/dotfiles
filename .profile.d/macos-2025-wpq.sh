@@ -1,5 +1,6 @@
 # macos-2025-wpq (MacBook Air M4 15', purchased 2025)
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export PATH="$HOME/.local/bin:$PATH"
 
 export OPENAI_API_KEY=$(cat ~/.openai_api_key)
 export ANTHROPIC_API_KEY=$(cat ~/.anthropic_api_key)
