@@ -8,6 +8,8 @@ export GOOGLE_API_KEY=$(cat ~/.google_api_key)
 export PYPI_API_KEY=$(cat ~/.pypi_api_key)
 
 alias wm='worktree-mux'
+# note: auto mode is disabled for opus 4.6
+alias cld='claude --enable-auto-mode --model claude-opus-4-6'
 
 kalshi-use() {
   if [[ -z "$1" || "$1" == "-h" || "$1" == "--help" ]]; then
