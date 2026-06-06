@@ -12,11 +12,16 @@ alias wm='worktree-mux'
 alias cld='claude --enable-auto-mode --model claude-opus-4-6'
 
 kalshi-use() {
+  # Activate a kalshi profile by sourcing its env file. Each profile is a
+  # directory ~/.kalshi/<profile>/ containing a plain KEY=value `env` file
+  # (KALSHI_ACCESS_KEY, KALSHI_PRIVATE_KEY_PATH, KALSHI_BASE_URL) plus the key.
+  # The env file is the single source of truth, so the same file also works with
+  # `uv run --env-file` and docker `env_file:` — this function just sources it.
   if [[ -z "$1" || "$1" == "-h" || "$1" == "--help" ]]; then
     echo "Usage: kalshi-use <profile>"
     echo ""
-    echo "Sets KALSHI_ACCESS_KEY, KALSHI_PRIVATE_KEY_PATH, KALSHI_BASE_URL"
-    echo "for the given profile under ~/.kalshi/<profile>/."
+    echo "Sources ~/.kalshi/<profile>/env (sets KALSHI_ACCESS_KEY,"
+    echo "KALSHI_PRIVATE_KEY_PATH, KALSHI_BASE_URL)."
     echo ""
     echo "Available profiles:"
     ls ~/.kalshi/
@@ -27,21 +32,16 @@ kalshi-use() {
     return 0
   fi
   local profile="$1"
-  local base="$HOME/.kalshi/$profile"
-  if [[ ! -d "$base" ]]; then
-    echo "Unknown profile: $profile"
+  local envfile="$HOME/.kalshi/$profile/env"
+  if [[ ! -f "$envfile" ]]; then
+    echo "No env file: $envfile"
     echo "Available profiles:"
     ls ~/.kalshi/
     return 1
   fi
-  local env="${profile%%-*}"
-  export KALSHI_ACCESS_KEY=$(cat "$base/access_key")
-  export KALSHI_PRIVATE_KEY_PATH="$base/private_key.pem"
-  if [[ "$env" == "demo" ]]; then
-    export KALSHI_BASE_URL="https://demo-api.kalshi.co/trade-api/v2"
-  else
-    export KALSHI_BASE_URL="https://api.elections.kalshi.com/trade-api/v2"
-  fi
+  set -a            # auto-export every variable assigned while sourcing
+  source "$envfile"
+  set +a
   echo "kalshi: $profile ($KALSHI_BASE_URL)"
 }
 
