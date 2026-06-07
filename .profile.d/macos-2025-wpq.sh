@@ -7,6 +7,12 @@ export ANTHROPIC_API_KEY=$(cat ~/.anthropic_api_key)
 export GOOGLE_API_KEY=$(cat ~/.google_api_key)
 export PYPI_API_KEY=$(cat ~/.pypi_api_key)
 
+# weather_prediction_market: shared storage lives outside the repo (a 2GB+
+# sibling dir). constants.py reads WPM_STORAGE_DIR, so setting it here lets every
+# checkout AND every git worktree resolve storage without the in-repo `storage`
+# symlink. Docker overrides it to /data via compose.yaml.
+export WPM_STORAGE_DIR="$HOME/github/weather_prediction_market_storage"
+
 alias wm='worktree-mux'
 # note: auto mode is disabled for opus 4.6
 alias cld='claude --enable-auto-mode --model claude-opus-4-6'
